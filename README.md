@@ -92,6 +92,18 @@ To regenerate designs from Stitch, use the Stitch MCP tools and the stitch-loop 
 - **Skip link** — "Skip to main content" for keyboard/screen reader users
 - **One H1 per page** — Proper heading hierarchy throughout
 
+## Hostinger Deployment (fixing 403)
+
+1. **Document root must point to the `public` folder.** In hPanel → Domains → your domain → Document Root, set it to `public_html/your-project/public` (or wherever your `public` folder lives). The web server must serve from `public/`, not the project root.
+
+2. **Folder structure** — Upload the full project. The `public` folder should contain: `index.php`, `admin/`, `api/`, `assets/`, `.htaccess`, `robots.txt`, `sitemap.xml.php`, etc.
+
+3. **Permissions** — Set 755 for directories, 644 for files (via File Manager).
+
+4. **`.htaccess`** — The `public/.htaccess` sets `DirectoryIndex index.php` and routes clean URLs. If you still get 403, temporarily rename `.htaccess` to test; some Hostinger configs may conflict.
+
+5. **`.env`** — Create `.env` in the project root (parent of `public`) with `APP_ENV=production`, `APP_URL=https://your-domain.com`, and your DB credentials.
+
 ## Tech Stack
 
 - **PHP** — Vanilla PHP, PDO for database
