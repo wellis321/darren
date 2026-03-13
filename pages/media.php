@@ -57,8 +57,8 @@ if (empty($videos)) {
 </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
-<div class="relative flex min-h-screen flex-col overflow-x-hidden">
 <?php require __DIR__ . '/../includes/navbar-stitch.php'; ?>
+<div class="relative flex min-h-screen flex-col overflow-x-hidden">
 <!-- Category Tabs -->
 <nav class="sticky top-16 z-40 bg-background-light dark:bg-background-dark border-b border-primary/10">
 <div class="flex px-4 gap-8 overflow-x-auto no-scrollbar">

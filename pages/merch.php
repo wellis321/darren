@@ -37,8 +37,8 @@ $metaDescription = 'Official Darren Connell merchandise. Tour t-shirts, Glasgow 
 </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased">
-<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
 <?php require __DIR__ . '/../includes/navbar-stitch.php'; ?>
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
 <!-- Category Tabs -->
 <nav class="bg-background-light dark:bg-background-dark border-b border-primary/10">
 <div class="flex px-4 gap-6 overflow-x-auto no-scrollbar">

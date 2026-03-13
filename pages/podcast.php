@@ -42,8 +42,8 @@ $youtubeUrl = 'https://www.youtube.com/results?search_query=Glaswegians+Anonymou
 </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
-<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
 <?php require __DIR__ . '/../includes/navbar-stitch.php'; ?>
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
 <main id="main-content" class="flex-1 pb-24">
 <!-- Hero Section -->
 <section class="flex p-6">

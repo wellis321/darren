@@ -64,8 +64,8 @@ $tourTag = date('Y') . ' Tour';
 </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
-<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
 <?php require __DIR__ . '/../includes/navbar-stitch.php'; ?>
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
 <main id="main-content">
 <!-- Hero Banner -->
 <div class="p-4">

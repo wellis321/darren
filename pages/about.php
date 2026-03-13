@@ -52,8 +52,8 @@ $c = function($key) use ($content, $defaults) {
 </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
-<div class="relative flex min-h-screen flex-col overflow-x-hidden">
 <?php require __DIR__ . '/../includes/navbar-stitch.php'; ?>
+<div class="relative flex min-h-screen flex-col overflow-x-hidden">
 <main id="main-content" class="flex-grow">
 <div class="px-4 py-6">
 <div class="bg-cover bg-center flex flex-col justify-end overflow-hidden rounded-xl min-h-[450px] relative group" style="background-image: linear-gradient(to top, rgba(34, 22, 16, 0.9) 0%, rgba(34, 22, 16, 0.4) 30%, rgba(34, 22, 16, 0) 100%), url('<?= BASE_PATH ?>/assets/images/darrenconnell_wideimage.jpg');">
