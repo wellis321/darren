@@ -121,11 +121,12 @@ ob_start();
     <a href="merch.php" class="btn btn-secondary">Cancel</a>
 </form>
 <?php endif; ?>
-<table class="admin-table">
-    <thead><tr><th>Title</th><th>Category</th><th>Price</th><th>Actions</th></tr></thead>
+<table class="admin-table" id="merch-table">
+    <thead><tr><th style="width:36px"></th><th>Title</th><th>Category</th><th>Price</th><th>Actions</th></tr></thead>
     <tbody>
         <?php foreach ($items as $i): ?>
-        <tr>
+        <tr data-id="<?= (int)$i['id'] ?>">
+            <td class="merch-drag-handle" title="Drag to reorder">⋮⋮</td>
             <td><?= e($i['title']) ?><?= !empty($i['is_featured']) ? ' <span class="text-primary">★</span>' : '' ?></td>
             <td><?= e(str_replace('_', ' ', $i['category'])) ?></td>
             <td><?= $i['price'] ? '£' . number_format((float)$i['price'], 2) : '—' ?></td>
@@ -139,6 +140,40 @@ ob_start();
     </tbody>
 </table>
 <?php if (empty($items)): ?><p>No products yet. Add one to get started.</p><?php endif; ?>
+<?php if (!empty($items)): ?>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
+<script>
+(function() {
+    var tbody = document.querySelector('.admin-table#merch-table tbody');
+    if (!tbody) return;
+    var form = document.createElement('form');
+    form.innerHTML = '<input type="hidden" name="csrf_token" value="<?= e(csrf_token()) ?>">';
+    var csrf = form.querySelector('input').value;
+    new Sortable(tbody, {
+        handle: '.merch-drag-handle',
+        animation: 150,
+        onEnd: function() {
+            var ids = [].map.call(tbody.querySelectorAll('tr[data-id]'), function(tr) { return tr.dataset.id; });
+            var fd = new FormData();
+            fd.append('csrf_token', csrf);
+            ids.forEach(function(id) { fd.append('ids[]', id); });
+            fetch('merch-reorder.php', { method: 'POST', body: fd })
+                .then(function(r) { return r.json(); })
+                .then(function(data) {
+                    if (data.ok) {
+                        var msg = document.createElement('p');
+                        msg.className = 'flash flash-success';
+                        msg.textContent = 'Order saved.';
+                        var main = document.querySelector('.admin-main');
+                        if (main) main.insertAdjacentElement('afterbegin', msg);
+                        setTimeout(function() { msg.remove(); }, 2000);
+                    }
+                });
+        }
+    });
+})();
+</script>
+<?php endif; ?>
 <?php
 $adminContent = ob_get_clean();
 include __DIR__ . '/layout.php';

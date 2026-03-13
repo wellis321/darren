@@ -43,7 +43,7 @@ if (isset($_GET['edit'])) {
     $edit = ['id' => 0, 'podcast_name' => '', 'episode_title' => '', 'episode_url' => '', 'embed_code' => '', 'description' => '', 'release_date' => '', 'sort_order' => 0];
 }
 
-$stmt = $pdo->query("SELECT * FROM podcast_episodes ORDER BY release_date DESC, sort_order DESC, id DESC");
+$stmt = $pdo->query("SELECT * FROM podcast_episodes ORDER BY sort_order ASC, release_date DESC, id DESC");
 $episodes = $stmt->fetchAll();
 
 ob_start();
@@ -94,11 +94,12 @@ ob_start();
 </form>
 <?php endif; ?>
 
-<table class="admin-table">
-    <thead><tr><th>Podcast</th><th>Episode</th><th>Date</th><th>Actions</th></tr></thead>
+<table class="admin-table" id="podcast-table">
+    <thead><tr><th style="width:36px"></th><th>Podcast</th><th>Episode</th><th>Date</th><th>Actions</th></tr></thead>
     <tbody>
         <?php foreach ($episodes as $e): ?>
-        <tr>
+        <tr data-id="<?= (int)$e['id'] ?>">
+            <td class="admin-drag-handle" title="Drag to reorder">⋮⋮</td>
             <td><?= e($e['podcast_name']) ?></td>
             <td><?= e($e['episode_title']) ?></td>
             <td><?= $e['release_date'] ? format_date($e['release_date']) : '—' ?></td>
@@ -112,6 +113,12 @@ ob_start();
     </tbody>
 </table>
 <?php if (empty($episodes)): ?><p>No episodes yet.</p><?php endif; ?>
+<?php if (!empty($episodes)): ?>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
+<script>
+(function(){var t=document.querySelector('#podcast-table tbody');if(!t)return;var f=document.createElement('form');f.innerHTML='<input type="hidden" name="csrf_token" value="<?= e(csrf_token()) ?>">';var c=f.querySelector('input').value;new Sortable(t,{handle:'.admin-drag-handle',animation:150,onEnd:function(){var ids=[].map.call(t.querySelectorAll('tr[data-id]'),function(r){return r.dataset.id});var fd=new FormData();fd.append('csrf_token',c);ids.forEach(function(i){fd.append('ids[]',i)});fetch('podcast-reorder.php',{method:'POST',body:fd}).then(function(r){return r.json()}).then(function(d){if(d.ok){var m=document.createElement('p');m.className='flash flash-success';m.textContent='Order saved.';var main=document.querySelector('.admin-main');if(main)main.insertAdjacentElement('afterbegin',m);setTimeout(function(){m.remove()},2000)}})}});})();
+</script>
+<?php endif; ?>
 <?php
 $adminContent = ob_get_clean();
 include __DIR__ . '/layout.php';

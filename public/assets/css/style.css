@@ -529,6 +529,20 @@ img { max-width: 100%; height: auto; display: block; }
 .admin-table .btn-primary { color: #1a1a1d; }
 .admin-table .btn-primary:hover { color: #1a1a1d; }
 .admin-table .btn { margin-right: 0.35rem; margin-bottom: 0.25rem; }
+.merch-drag-handle,
+.admin-drag-handle {
+  cursor: grab;
+  user-select: none;
+  color: #999;
+  font-size: 1rem;
+  line-height: 1;
+}
+.merch-drag-handle:hover,
+.admin-drag-handle:hover { color: var(--color-accent); }
+.merch-drag-handle:active,
+.admin-drag-handle:active { cursor: grabbing; }
+.admin-table .sortable-ghost { opacity: 0.4; background: #f0f0f0; }
+.admin-table .sortable-drag { opacity: 0.95; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
 .admin-login {
   max-width: 360px;
   margin: 6rem auto;

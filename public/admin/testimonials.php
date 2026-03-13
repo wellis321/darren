@@ -72,11 +72,12 @@ ob_start();
     <a href="testimonials.php" class="btn btn-secondary">Cancel</a>
 </form>
 <?php endif; ?>
-<table class="admin-table">
-    <thead><tr><th>Quote</th><th>Author</th><th>Featured</th><th>Actions</th></tr></thead>
+<table class="admin-table" id="testimonials-table">
+    <thead><tr><th style="width:36px"></th><th>Quote</th><th>Author</th><th>Featured</th><th>Actions</th></tr></thead>
     <tbody>
         <?php foreach ($items as $t): ?>
-        <tr>
+        <tr data-id="<?= (int)$t['id'] ?>">
+            <td class="admin-drag-handle" title="Drag to reorder">⋮⋮</td>
             <td><?= e(mb_substr($t['quote'], 0, 60)) ?>...</td>
             <td><?= e($t['author']) ?></td>
             <td><?= $t['is_featured'] ? 'Yes' : 'No' ?></td>
@@ -89,6 +90,12 @@ ob_start();
         <?php endforeach; ?>
     </tbody>
 </table>
+<?php if (!empty($items)): ?>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
+<script>
+(function(){var t=document.querySelector('#testimonials-table tbody');if(!t)return;var f=document.createElement('form');f.innerHTML='<input type="hidden" name="csrf_token" value="<?= e(csrf_token()) ?>">';var c=f.querySelector('input').value;new Sortable(t,{handle:'.admin-drag-handle',animation:150,onEnd:function(){var ids=[].map.call(t.querySelectorAll('tr[data-id]'),function(r){return r.dataset.id});var fd=new FormData();fd.append('csrf_token',c);ids.forEach(function(i){fd.append('ids[]',i)});fetch('testimonials-reorder.php',{method:'POST',body:fd}).then(function(r){return r.json()}).then(function(d){if(d.ok){var m=document.createElement('p');m.className='flash flash-success';m.textContent='Order saved.';var main=document.querySelector('.admin-main');if(main)main.insertAdjacentElement('afterbegin',m);setTimeout(function(){m.remove()},2000)}})}});})();
+</script>
+<?php endif; ?>
 <?php
 $adminContent = ob_get_clean();
 include __DIR__ . '/layout.php';
