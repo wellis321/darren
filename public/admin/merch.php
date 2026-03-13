@@ -86,10 +86,12 @@ ob_start();
     <div class="form-group">
         <label>Image URL</label>
         <input type="url" name="image_url" value="<?= e($edit['image_url'] ?? '') ?>" placeholder="https://...">
+        <small class="form-hint">Recommended: 800×800px square (product page displays at 384×384px)</small>
     </div>
     <div class="form-group">
         <label>Featured image URL <small>(optional – used in the shop banner when featured; leave blank to use main image)</small></label>
         <input type="url" name="featured_image_url" value="<?= e($edit['featured_image_url'] ?? '') ?>" placeholder="https://...">
+        <small class="form-hint">Recommended: 1200×400px (3:1 landscape for the featured banner)</small>
     </div>
     <div class="form-group">
         <label>Category</label>

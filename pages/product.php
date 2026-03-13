@@ -31,8 +31,13 @@ $currentIdx = null;
 foreach ($allProducts as $i => $p) {
     if ($p['slug'] === $slug) { $currentIdx = $i; break; }
 }
-$prevProduct = ($currentIdx !== null && $currentIdx > 0) ? $allProducts[$currentIdx - 1] : null;
-$nextProduct = ($currentIdx !== null && $currentIdx < count($allProducts) - 1) ? $allProducts[$currentIdx + 1] : null;
+$n = count($allProducts);
+if ($currentIdx !== null && $n > 1) {
+    $prevProduct = $allProducts[($currentIdx - 1 + $n) % $n];
+    $nextProduct = $allProducts[($currentIdx + 1) % $n];
+} else {
+    $prevProduct = $nextProduct = null;
+}
 $otherProducts = array_slice(array_filter($allProducts, fn($op) => $op['slug'] !== $slug), 0, 3);
 ?>
 <!DOCTYPE html>
@@ -74,8 +79,8 @@ $otherProducts = array_slice(array_filter($allProducts, fn($op) => $op['slug'] !
     <span class="material-symbols-outlined text-xl">arrow_back</span> Back to Shop
 </a>
 <div class="flex flex-col md:flex-row gap-8">
-<div class="flex-1 aspect-square md:aspect-[4/5] rounded-2xl overflow-hidden bg-primary/5 border border-primary/10">
-    <img src="<?= e($imgUrl) ?>" alt="<?= e($product['title']) ?>" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='<?= e($imgFallbackLocal) ?>'">
+<div class="w-full md:w-96 md:shrink-0 aspect-square rounded-2xl overflow-hidden bg-primary/5 border border-primary/10">
+    <img src="<?= e($imgUrl) ?>" alt="<?= e($product['title']) ?>" class="w-full h-full object-cover object-center" onerror="this.onerror=null;this.src='<?= e($imgFallbackLocal) ?>'">
 </div>
 <div class="flex-1 flex flex-col">
     <span class="inline-block px-2 py-1 rounded bg-primary/20 text-primary text-xs font-bold uppercase tracking-wider mb-2 w-fit"><?= e(str_replace('_', ' ', $product['category'])) ?></span>

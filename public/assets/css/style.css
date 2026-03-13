@@ -500,6 +500,7 @@ img { max-width: 100%; height: auto; display: block; }
   margin-bottom: 2rem;
 }
 .admin-form .form-group { margin-bottom: 1rem; }
+.admin-form .form-hint { display: block; margin-top: 0.25rem; font-size: 0.75rem; color: #666; }
 .admin-form label { display: block; margin-bottom: 0.35rem; font-weight: 500; font-size: 0.9rem; }
 .admin-form input,
 .admin-form textarea,
