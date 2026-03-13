@@ -30,7 +30,7 @@ $tourTag = date('Y') . ' Tour';
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta name="description" content="<?= e($metaDescription) ?>">
+<?php $jsonLdEvents = array_slice($upcoming, 0, 10); require __DIR__ . '/../includes/meta-stitch.php'; ?>
 <title><?= e($pageTitle) ?> | Darren Connell</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
@@ -66,7 +66,7 @@ $tourTag = date('Y') . ' Tour';
 <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
 <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
 <?php require __DIR__ . '/../includes/navbar-stitch.php'; ?>
-
+<main id="main-content">
 <!-- Hero Banner -->
 <div class="p-4">
 <div class="relative flex flex-col justify-end overflow-hidden rounded-xl min-h-[240px] group" style="background-image: linear-gradient(0deg, rgba(34, 22, 16, 0.9) 0%, rgba(34, 22, 16, 0.2) 50%, rgba(34, 22, 16, 0) 100%), url('/assets/images/darren__banner.png'); background-size: cover; background-position: center;">
@@ -151,7 +151,7 @@ $locationStr = $city ? e($city) . ($country ? ', ' . $country : '') : '';
 </details>
 <?php endif; ?>
 </div>
-
+</main>
 <!-- Bottom Nav -->
 <nav class="fixed bottom-0 left-0 right-0 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-lg border-t border-primary/10 px-4 pb-4 pt-2 flex justify-between items-center z-50">
 <a class="flex flex-col items-center gap-1 group flex-1" href="/">

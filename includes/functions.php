@@ -40,6 +40,21 @@ function redirect($url, $status = 302) {
     exit;
 }
 
+/**
+ * Redirect back to referer only if it's same-origin (prevents open redirect).
+ */
+function safe_redirect_back($fallback = '/') {
+    $referer = $_SERVER['HTTP_REFERER'] ?? '';
+    if ($referer !== '') {
+        $refHost = parse_url($referer, PHP_URL_HOST);
+        $reqHost = $_SERVER['HTTP_HOST'] ?? '';
+        if ($refHost !== '' && strtolower($refHost) === strtolower($reqHost)) {
+            redirect($referer);
+        }
+    }
+    redirect($fallback);
+}
+
 function old($key, $default = '') {
     return $_SESSION['old'][$key] ?? $default;
 }

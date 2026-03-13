@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once dirname(__DIR__, 2) . '/config/session.php';
 require_once dirname(__DIR__, 2) . '/config/database.php';
 require_once dirname(__DIR__, 2) . '/includes/functions.php';
 
@@ -9,13 +9,13 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 if (!verify_csrf()) {
     flash('error', 'Invalid request. Please try again.');
-    redirect($_SERVER['HTTP_REFERER'] ?? '/');
+    safe_redirect_back('/');
 }
 
 $email = filter_var(trim($_POST['email'] ?? ''), FILTER_VALIDATE_EMAIL);
 if (!$email) {
     flash('error', 'Please enter a valid email address.');
-    redirect($_SERVER['HTTP_REFERER'] ?? '/');
+    safe_redirect_back('/');
 }
 
 try {
@@ -29,4 +29,4 @@ try {
         flash('error', 'Something went wrong. Please try again.');
     }
 }
-redirect($_SERVER['HTTP_REFERER'] ?? '/');
+safe_redirect_back('/');

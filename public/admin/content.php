@@ -20,7 +20,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && verify_csrf()) {
 
 $stmt = $pdo->query("SELECT * FROM content ORDER BY slug");
 $pages = $stmt->fetchAll();
+$validSlugs = array_column($pages, 'slug');
 $editSlug = $_GET['edit'] ?? $pages[0]['slug'] ?? 'about';
+if (!in_array($editSlug, $validSlugs, true)) {
+    $editSlug = $pages[0]['slug'] ?? 'about';
+}
 $stmt = $pdo->prepare("SELECT * FROM content WHERE slug=?");
 $stmt->execute([$editSlug]);
 $current = $stmt->fetch();

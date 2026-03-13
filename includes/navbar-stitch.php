@@ -1,9 +1,10 @@
 <?php $currentPage = $currentPage ?? 'home'; ?>
+<a href="#main-content" class="absolute left-4 top-4 -translate-y-[200%] focus:translate-y-0 focus:z-[100] px-4 py-2 bg-primary text-white rounded-lg font-bold transition-transform focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-background-dark">Skip to main content</a>
 <header class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-primary/10">
 <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-<a href="/" class="flex items-center gap-2">
-<span class="material-symbols-outlined text-primary text-3xl">mic_external_on</span>
-<h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100">DARREN <span class="text-primary">CONNELL</span></h1>
+<a href="/" class="flex items-center gap-2" aria-label="Darren Connell - Home">
+<span class="material-symbols-outlined text-primary text-3xl" aria-hidden="true">mic_external_on</span>
+<span class="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100">DARREN <span class="text-primary">CONNELL</span></span>
 </a>
 <nav class="hidden md:flex items-center gap-1">
 <a class="text-sm font-medium px-3 py-2 rounded-lg hover:bg-primary/10 hover:text-primary transition-colors <?= $currentPage === 'home' ? 'text-primary' : 'text-slate-600 dark:text-slate-400' ?>" href="/">Home</a>

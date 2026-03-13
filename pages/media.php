@@ -29,7 +29,7 @@ if (empty($videos)) {
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta name="description" content="<?= e($metaDescription) ?>">
+<?php require __DIR__ . '/../includes/meta-stitch.php'; ?>
 <title><?= e($pageTitle) ?> | Darren Connell</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
@@ -79,11 +79,11 @@ if (empty($videos)) {
 </a>
 </div>
 </nav>
-<main class="flex-1 pb-24">
+<main id="main-content" class="flex-1 pb-24">
 <!-- Video Section -->
 <section id="all" class="p-4">
 <div class="flex items-center justify-between mb-4">
-<h2 class="text-lg font-bold tracking-tight">Stand-up &amp; Sketches</h2>
+<h1 class="text-lg font-bold tracking-tight">Stand-up &amp; Sketches</h1>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 <?php foreach (array_slice($videos, 0, 2) as $i => $item): ?>

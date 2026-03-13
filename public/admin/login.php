@@ -17,6 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $user = $stmt->fetch();
 
         if ($user && password_verify($password, $user['password_hash'])) {
+            session_regenerate_id(true);
             $_SESSION['admin_id'] = $user['id'];
             header('Cache-Control: no-store, no-cache, must-revalidate');
             header('Location: /admin/index.php');
@@ -41,6 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body class="admin-body">
     <div class="admin-login">
         <h1>Admin Login</h1>
+        <?php if (!empty($_GET['reset'])): ?><p class="flash flash-success">Password updated. You can log in with your new password.</p><?php endif; ?>
         <?php if (!empty($error)): ?><p class="error"><?= e($error) ?></p><?php endif; ?>
         <form method="post" class="admin-form">
             <div class="form-group">
@@ -52,8 +54,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="password" id="password" name="password" required>
             </div>
             <button type="submit" class="btn btn-primary">Log In</button>
+            <p class="login-hint" style="margin-top:0.75rem;"><a href="forgot-password.php">Forgot password?</a></p>
         </form>
-        <p class="login-hint">Default: admin@darrenconnell.com / changeme123</p>
+        <?php if (env('APP_ENV') !== 'production'): ?><p class="login-hint">Dev hint: admin@darrenconnell.com / changeme123</p><?php endif; ?>
     </div>
 </body>
 </html>

@@ -36,7 +36,8 @@ if (isset($_GET['delete'])) {
 
 $stmt = $pdo->query("SELECT * FROM testimonials ORDER BY is_featured DESC, sort_order");
 $items = $stmt->fetchAll();
-$edit = isset($_GET['edit']) ? array_filter($items, fn($t) => $t['id'] == $_GET['edit'])[0] ?? null : null;
+$editId = isset($_GET['edit']) ? (int) $_GET['edit'] : 0;
+$edit = $editId ? (array_values(array_filter($items, fn($t) => (int) $t['id'] === $editId))[0] ?? null) : null;
 
 ob_start();
 ?>

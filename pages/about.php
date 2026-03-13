@@ -25,7 +25,7 @@ $c = function($key) use ($content, $defaults) {
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta name="description" content="<?= e($metaDescription) ?>">
+<?php require __DIR__ . '/../includes/meta-stitch.php'; ?>
 <title><?= e($pageTitle) ?> | Darren Connell</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
@@ -54,7 +54,7 @@ $c = function($key) use ($content, $defaults) {
 <body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
 <div class="relative flex min-h-screen flex-col overflow-x-hidden">
 <?php require __DIR__ . '/../includes/navbar-stitch.php'; ?>
-<main class="flex-grow">
+<main id="main-content" class="flex-grow">
 <div class="px-4 py-6">
 <div class="bg-cover bg-center flex flex-col justify-end overflow-hidden rounded-xl min-h-[450px] relative group" style="background-image: linear-gradient(to top, rgba(34, 22, 16, 0.9) 0%, rgba(34, 22, 16, 0.4) 30%, rgba(34, 22, 16, 0) 100%), url('/assets/images/darrenconnell_wideimage.jpg');">
 <div class="flex flex-col p-6 space-y-2">

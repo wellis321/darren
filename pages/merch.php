@@ -1,11 +1,14 @@
 <?php
 $currentPage = 'merch';
+$pageTitle = 'Shop';
+$metaDescription = 'Official Darren Connell merchandise. Tour t-shirts, Glasgow humor magnets, banter mugs and more.';
 ?>
 <!DOCTYPE html>
 <html class="dark" lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<?php require __DIR__ . '/../includes/meta-stitch.php'; ?>
 <title>Darren Connell Shop - Official Merchandise</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
@@ -53,10 +56,10 @@ $currentPage = 'merch';
 </a>
 </div>
 </nav>
-<main class="flex-1">
+<main id="main-content" class="flex-1">
 <!-- Featured Tour Merch -->
 <section class="p-4">
-<h2 class="text-slate-900 dark:text-slate-100 text-2xl font-bold leading-tight mb-4">Tour Merchandise</h2>
+<h1 class="text-slate-900 dark:text-slate-100 text-2xl font-bold leading-tight mb-4">Tour Merchandise</h1>
 <div class="@container">
 <div class="flex flex-col items-stretch justify-start rounded-xl @xl:flex-row @xl:items-start overflow-hidden border border-primary/10 bg-primary/5">
 <div class="w-full bg-center bg-no-repeat aspect-square @xl:aspect-video bg-cover" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAf9wbGAXxz4De4SK03As0NAInpUEBDrE_hNIEDEt_Zkptx9skUU4HK7KWKMBHzAZ1nKhmak164465u7jnrXgO01PAYT12uSnFnQQ-bf8-q1Xz3krJZBZkpE4R9J-vJJtu7wxljkTatTbmfTCMMrwsTeoOCDXLoAFTG__wmfeDs5r1342EABpQWH9H8YLuwR_kreqBn31tdjoPfmjVk7Gy4Zbc820mzLdzofz_IW7RnLN54CaWUJXFmHKUWeNzP0Wt1-5K_gzmOnyw");'></div>

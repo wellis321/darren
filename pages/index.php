@@ -1,6 +1,7 @@
 <?php
 $currentPage = 'home';
 $pageTitle = 'Darren Connell';
+$fullTitle = 'Darren Connell | Official Site';
 $metaDescription = 'Darren Connell - Scottish comedian, actor and BAFTA-nominated star of Scot Squad. Book tickets and watch live.';
 
 $stmt = $pdo->query("SELECT * FROM events WHERE event_date >= CURDATE() ORDER BY event_date ASC LIMIT 6");
@@ -25,6 +26,7 @@ $testimonialRotate = count($testimonials) > 3;
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<?php require __DIR__ . '/../includes/meta-stitch.php'; ?>
 <title>Darren Connell | Official Site</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
@@ -64,7 +66,7 @@ $testimonialRotate = count($testimonials) > 3;
 </head>
 <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased">
 <?php require __DIR__ . '/../includes/navbar-stitch.php'; ?>
-<main>
+<main id="main-content">
 <?php if ($flash = flash('success')): ?>
 <div class="max-w-7xl mx-auto px-4 py-4">
 <div class="bg-green-500/20 border border-green-500/40 rounded-lg px-4 py-2 text-green-200"><?= e($flash) ?></div>

@@ -18,13 +18,31 @@ if ($path === '/favicon.ico') {
     header('HTTP/1.1 204 No Content');
     exit;
 }
+// Sitemap, llms.txt, ai.txt (before session/DB to avoid overhead)
+$reqPath = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
+$reqPath = rtrim($reqPath, '/') ?: '/';
+if ($reqPath === '/sitemap.xml') {
+    require_once dirname(__DIR__) . '/config/env.php';
+    include __DIR__ . '/sitemap.xml.php';
+    exit;
+}
+if ($reqPath === '/llms.txt') {
+    require_once dirname(__DIR__) . '/config/env.php';
+    include __DIR__ . '/llms.txt.php';
+    exit;
+}
+if ($reqPath === '/ai.txt') {
+    require_once dirname(__DIR__) . '/config/env.php';
+    include __DIR__ . '/ai.txt.php';
+    exit;
+}
 // Redirect /public and /public/ to / (server root is already public)
 if (preg_match('#^/public/?$#', parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH))) {
     header('Location: /', true, 301);
     exit;
 }
 
-session_start();
+require_once dirname(__DIR__) . '/config/session.php';
 require_once dirname(__DIR__) . '/config/database.php';
 require_once dirname(__DIR__) . '/includes/functions.php';
 

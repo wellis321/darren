@@ -39,7 +39,7 @@ $micImageUrl = 'https://lh3.googleusercontent.com/aida-public/AB6AXuDAFQnnBKOQ24
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta name="description" content="<?= e($metaDescription) ?>">
+<?php require __DIR__ . '/../includes/meta-stitch.php'; ?>
 <title><?= e($pageTitle) ?> | Darren Connell</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
@@ -68,7 +68,7 @@ $micImageUrl = 'https://lh3.googleusercontent.com/aida-public/AB6AXuDAFQnnBKOQ24
 <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
 <?php require __DIR__ . '/../includes/navbar-stitch.php'; ?>
 <div class="relative flex flex-col min-h-screen">
-<div class="max-w-7xl mx-auto w-full px-4">
+<main id="main-content" class="max-w-7xl mx-auto w-full px-4">
 
 <?php if ($flash = flash('success')): ?>
 <div class="mx-4 mt-4 p-4 bg-green-500/20 border border-green-500/40 rounded-lg text-green-200 text-sm"><?= e($flash) ?></div>
@@ -89,7 +89,7 @@ $micImageUrl = 'https://lh3.googleusercontent.com/aida-public/AB6AXuDAFQnnBKOQ24
 
 <!-- Intro Text -->
 <div class="px-4 py-4">
-<h2 class="text-slate-900 dark:text-slate-100 text-xl font-bold font-display mb-2">Booking &amp; Inquiries</h2>
+<h1 class="text-slate-900 dark:text-slate-100 text-xl font-bold font-display mb-2">Booking &amp; Inquiries</h1>
 <p class="text-slate-600 dark:text-slate-400 text-base leading-relaxed">
     Whether it's a corporate gig, press request, or just a friendly fan message, I'd love to hear from you. My team usually responds within 48 hours.
 </p>
@@ -176,6 +176,7 @@ $micImageUrl = 'https://lh3.googleusercontent.com/aida-public/AB6AXuDAFQnnBKOQ24
 </div>
 
 <div class="h-20"></div>
+</main>
 </div>
 </div>
 

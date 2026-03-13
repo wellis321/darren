@@ -22,14 +22,13 @@ Or connect with your client and run `sql/schema.sql`.
 
 ### 2. Environment
 
-Copy `.env.example` to `.env` and adjust if needed:
+Copy `.env.example` to `.env` and adjust if needed. For **production** (e.g. Hostinger), set:
 
 ```
-DB_HOST=localhost:8889
-DB_NAME=darrenn
-DB_USER=root
-DB_PASS=root
+APP_ENV=production
 ```
+
+This enables secure session cookies, hides the login dev hint, and suppresses DB error details on 503.
 
 ### 3. Start the server
 
@@ -45,7 +44,7 @@ Then open [http://localhost:8001](http://localhost:8001).
 
 - **URL:** [http://localhost:8001/admin/](http://localhost:8001/admin/)
 - **Default login:** admin@darrenconnell.com / changeme123
-- **Change the password** on first use (update the users table or add a password change feature).
+- **Forgot password:** Use the link on the login page to request a reset email. Run `sql/add-password-reset.sql` first to create the tokens table.
 
 ### Admin Features
 
@@ -78,6 +77,20 @@ This site uses **Stitch project 3458059587571971262** for design.
 - **Docs:** `.stitch/SITE.md` — sitemap and roadmap
 
 To regenerate designs from Stitch, use the Stitch MCP tools and the stitch-loop skill.
+
+## AI Directories (llms.txt / ai.txt)
+
+- **llms.txt** — At `/llms.txt`. Short and long descriptions for ChatGPT, Claude, Perplexity. Structured summary with core pages, bookings, social links.
+- **ai.txt** — At `/ai.txt`. AI behavioral guidance: citation permissions, attribution, contact.
+
+## SEO & Accessibility
+
+- **Meta tags** — Each page has unique meta descriptions, Open Graph and Twitter Card tags
+- **Sitemap** — Dynamic at `/sitemap.xml` (uses `APP_URL` from .env)
+- **Robots.txt** — At `/robots.txt`; update the Sitemap URL for your production domain
+- **JSON-LD** — Person, WebSite, and Event structured data for rich search results
+- **Skip link** — "Skip to main content" for keyboard/screen reader users
+- **One H1 per page** — Proper heading hierarchy throughout
 
 ## Tech Stack
 

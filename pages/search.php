@@ -22,7 +22,7 @@ $metaDescription = $q ? "Search results for " . e($q) : 'Search the site';
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta name="description" content="<?= e($metaDescription) ?>">
+<?php require __DIR__ . '/../includes/meta-stitch.php'; ?>
 <title><?= e($pageTitle) ?> | Darren Connell</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
@@ -50,7 +50,7 @@ $metaDescription = $q ? "Search results for " . e($q) : 'Search the site';
 </head>
 <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
 <?php require __DIR__ . '/../includes/navbar-stitch.php'; ?>
-<main class="max-w-3xl mx-auto px-4 py-12">
+<main id="main-content" class="max-w-3xl mx-auto px-4 py-12">
 <h1 class="text-2xl font-bold font-display mb-6"><?= $q ? 'Search results' : 'Search' ?></h1>
 <?php if (!$q): ?>
 <form action="/search.php" method="get" class="mb-8">
