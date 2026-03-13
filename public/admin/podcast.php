@@ -94,15 +94,16 @@ ob_start();
 </form>
 <?php endif; ?>
 
+<div class="admin-table-wrapper">
 <table class="admin-table" id="podcast-table">
     <thead><tr><th style="width:36px"></th><th>Podcast</th><th>Episode</th><th>Date</th><th>Actions</th></tr></thead>
     <tbody>
         <?php foreach ($episodes as $e): ?>
         <tr data-id="<?= (int)$e['id'] ?>">
             <td class="admin-drag-handle" title="Drag to reorder">⋮⋮</td>
-            <td><?= e($e['podcast_name']) ?></td>
-            <td><?= e($e['episode_title']) ?></td>
-            <td><?= $e['release_date'] ? format_date($e['release_date']) : '—' ?></td>
+            <td><?= e(mb_strlen($e['podcast_name']) > 20 ? mb_substr($e['podcast_name'], 0, 20) . '…' : $e['podcast_name']) ?></td>
+            <td><?= e(mb_strlen($e['episode_title']) > 20 ? mb_substr($e['episode_title'], 0, 20) . '…' : $e['episode_title']) ?></td>
+            <td><?= $e['release_date'] ? format_date($e['release_date'], 'd/m/Y') : '—' ?></td>
             <td>
                 <a href="/podcast.php" target="_blank" rel="noopener" class="btn btn-small btn-secondary">View</a>
                 <a href="?edit=<?= $e['id'] ?>" class="btn btn-small btn-primary">Edit</a>
@@ -112,6 +113,7 @@ ob_start();
         <?php endforeach; ?>
     </tbody>
 </table>
+</div>
 <?php if (empty($episodes)): ?><p>No episodes yet.</p><?php endif; ?>
 <?php if (!empty($episodes)): ?>
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>

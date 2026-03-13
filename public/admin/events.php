@@ -104,6 +104,7 @@ ob_start();
 </form>
 <?php endif; ?>
 
+<div class="admin-table-wrapper">
 <table class="admin-table" id="events-table">
     <thead>
         <tr><th style="width:36px"></th><th>Date</th><th>Title</th><th>Venue</th><th>Actions</th></tr>
@@ -112,9 +113,9 @@ ob_start();
         <?php foreach ($events as $e): ?>
         <tr data-id="<?= (int)$e['id'] ?>">
             <td class="admin-drag-handle" title="Drag to reorder">⋮⋮</td>
-            <td><?= format_date($e['event_date']) ?></td>
-            <td><?= e($e['title']) ?></td>
-            <td><?= e($e['venue']) ?></td>
+            <td><?= format_date($e['event_date'], 'd/m/Y') ?></td>
+            <td><?= e(mb_strlen($e['title']) > 20 ? mb_substr($e['title'], 0, 20) . '…' : $e['title']) ?></td>
+            <td><?= e(mb_strlen($e['venue']) > 20 ? mb_substr($e['venue'], 0, 20) . '…' : $e['venue']) ?></td>
             <td>
                 <a href="/live.php" target="_blank" rel="noopener" class="btn btn-small btn-secondary">View</a>
                 <a href="?edit=<?= $e['id'] ?>" class="btn btn-small btn-primary">Edit</a>
@@ -124,6 +125,7 @@ ob_start();
         <?php endforeach; ?>
     </tbody>
 </table>
+</div>
 <?php if (!empty($events)): ?>
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
 <script>

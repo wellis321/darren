@@ -84,6 +84,7 @@ ob_start();
     <a href="media.php" class="btn btn-secondary">Cancel</a>
 </form>
 <?php endif; ?>
+<div class="admin-table-wrapper">
 <table class="admin-table" id="media-table">
     <thead><tr><th style="width:36px"></th><th>Type</th><th>Title</th><th>Actions</th></tr></thead>
     <tbody>
@@ -91,7 +92,7 @@ ob_start();
         <tr data-id="<?= (int)$i['id'] ?>">
             <td class="admin-drag-handle" title="Drag to reorder">⋮⋮</td>
             <td><?= e($i['type']) ?></td>
-            <td><?= e($i['title']) ?></td>
+            <td><?= e(mb_strlen($i['title']) > 20 ? mb_substr($i['title'], 0, 20) . '…' : $i['title']) ?></td>
             <td>
                 <a href="/media.php" target="_blank" rel="noopener" class="btn btn-small btn-secondary">View</a>
                 <a href="?edit=<?= $i['id'] ?>" class="btn btn-small btn-primary">Edit</a>
@@ -101,6 +102,7 @@ ob_start();
         <?php endforeach; ?>
     </tbody>
 </table>
+</div>
 <?php if (empty($items)): ?><p>No media yet.</p><?php endif; ?>
 <?php if (!empty($items)): ?>
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>

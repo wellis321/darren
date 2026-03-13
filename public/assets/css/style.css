@@ -513,6 +513,14 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .admin-form input[type="checkbox"] { width: auto; }
 .admin-form .btn { margin-right: 0.5rem; }
+.admin-table-wrapper {
+  overflow-x: auto;
+  margin-bottom: 2rem;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+  max-width: 100%;
+}
+.admin-table-wrapper .admin-table { min-width: 600px; width: max-content; }
 .admin-table {
   width: 100%;
   border-collapse: collapse;
@@ -529,6 +537,10 @@ img { max-width: 100%; height: auto; display: block; }
 .admin-table .btn-primary { color: #1a1a1d; }
 .admin-table .btn-primary:hover { color: #1a1a1d; }
 .admin-table .btn { margin-right: 0.35rem; margin-bottom: 0.25rem; }
+.admin-table th:last-child,
+.admin-table td:last-child { min-width: 180px; white-space: nowrap; }
+.admin-table td:last-child { display: flex; flex-wrap: nowrap; gap: 0.35rem; align-items: center; }
+.admin-table td:last-child .btn { flex-shrink: 0; margin: 0; }
 .merch-drag-handle,
 .admin-drag-handle {
   cursor: grab;
@@ -554,14 +566,27 @@ img { max-width: 100%; height: auto; display: block; }
 .admin-login h1 { margin: 0 0 1.5rem; font-size: 1.5rem; color: #1a1a1d; }
 .admin-login .error { color: #dc2626; margin-bottom: 1rem; }
 .admin-login .login-hint { font-size: 0.75rem; color: #666; margin-top: 1rem; }
-.content-tabs { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; list-style: none; padding: 0; }
+.content-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  list-style: none;
+  padding: 0;
+}
+.content-tabs li { margin: 0; }
 .content-tabs a {
+  display: inline-block;
   padding: 0.5rem 1rem;
   background: #eee;
   border-radius: 4px;
   color: #333;
+  white-space: nowrap;
+  font-size: 0.9rem;
 }
+.content-tabs a:hover { background: #e0e0e0; }
 .content-tabs a.active { background: var(--color-accent); color: white; }
+.admin-content-edit { min-width: 0; overflow-wrap: break-word; }
 .badge { padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem; }
 .badge-new { background: #dbeafe; color: #1d4ed8; }
 .badge-confirmed { background: #dcfce7; color: #166534; }

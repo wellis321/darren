@@ -121,14 +121,15 @@ ob_start();
     <a href="merch.php" class="btn btn-secondary">Cancel</a>
 </form>
 <?php endif; ?>
+<div class="admin-table-wrapper">
 <table class="admin-table" id="merch-table">
     <thead><tr><th style="width:36px"></th><th>Title</th><th>Category</th><th>Price</th><th>Actions</th></tr></thead>
     <tbody>
         <?php foreach ($items as $i): ?>
         <tr data-id="<?= (int)$i['id'] ?>">
             <td class="merch-drag-handle" title="Drag to reorder">⋮⋮</td>
-            <td><?= e($i['title']) ?><?= !empty($i['is_featured']) ? ' <span class="text-primary">★</span>' : '' ?></td>
-            <td><?= e(str_replace('_', ' ', $i['category'])) ?></td>
+            <td><?= e(mb_strlen($i['title']) > 20 ? mb_substr($i['title'], 0, 20) . '…' : $i['title']) ?><?= !empty($i['is_featured']) ? ' <span class="text-primary">★</span>' : '' ?></td>
+            <td><?= e(mb_strlen($i['category']) > 20 ? mb_substr(str_replace('_', ' ', $i['category']), 0, 20) . '…' : str_replace('_', ' ', $i['category'])) ?></td>
             <td><?= $i['price'] ? '£' . number_format((float)$i['price'], 2) : '—' ?></td>
             <td>
                 <a href="/merch/<?= e($i['slug']) ?>" target="_blank" rel="noopener" class="btn btn-small btn-secondary">View</a>
@@ -139,6 +140,7 @@ ob_start();
         <?php endforeach; ?>
     </tbody>
 </table>
+</div>
 <?php if (empty($items)): ?><p>No products yet. Add one to get started.</p><?php endif; ?>
 <?php if (!empty($items)): ?>
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
