@@ -3,6 +3,9 @@ DirectoryIndex index.php
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteBase /
+    # Map /admin and /api to public/ so files are found
+    RewriteRule ^admin(/.*)?$ public/admin$1 [L]
+    RewriteRule ^api(/.*)?$ public/api$1 [L]
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule . index.php [L]
