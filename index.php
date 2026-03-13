@@ -1,9 +1,9 @@
 <?php
 /**
- * Redirect root requests to /public/ when document root points at project root.
- * Preserves query string so every page does not land on home.
- * On Hostinger: set document root to public/ instead.
+ * When document root points at project root, run public/index.php directly.
+ * No redirect — avoids ERR_TOO_MANY_REDIRECTS on Hostinger.
+ * Prefer: set Hostinger document root to public/ instead.
  */
-$q = isset($_SERVER['QUERY_STRING']) && $_SERVER['QUERY_STRING'] !== '' ? '?' . $_SERVER['QUERY_STRING'] : '';
-header('Location: /public/' . ltrim($q, '/'), true, 302);
-exit;
+$_SERVER['SCRIPT_NAME'] = '/public/index.php';
+chdir(__DIR__ . '/public');
+require __DIR__ . '/public/index.php';
