@@ -296,6 +296,13 @@ $trackCount = count($trackSlides);
 <a class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white hover:scale-110 transition-transform" href="https://www.threads.net/@darrenconnellcomedian" target="_blank" rel="noopener" aria-label="Threads"><svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467h-4.22c-.995-2.36-2.886-3.448-5.726-3.464h-.009c-2.926.02-5.194 1.061-6.705 3.078C4.858 9.862 4.166 11.967 4.14 12.004v.018c.027.037.717 2.154 2.246 3.894 1.511 2.016 3.779 3.057 6.705 3.077h.009c2.84-.016 4.731-1.104 5.726-3.464h4.22c-.651 2.338-1.832 4.177-3.509 5.467-1.783 1.373-4.08 2.078-6.826 2.098zM20 17.754v.017c0 1.938-.548 3.652-1.618 5.078-.992 1.32-2.358 2.301-4.053 2.91-1.658.593-3.565.895-5.659.895h-.014c-2.095 0-4.001-.302-5.659-.895-1.695-.609-3.061-1.59-4.053-2.91C4.548 21.423 4 19.709 4 17.771v-.017h4.14v.017c0 1.366.387 2.575 1.138 3.563.696.91 1.65 1.581 2.813 1.964 1.123.365 2.376.552 3.713.552h.014c1.337 0 2.59-.187 3.713-.552 1.164-.383 2.117-1.054 2.813-1.964.751-.988 1.138-2.197 1.138-3.563v-.017H20z"/></svg></a>
 </div>
 <p class="text-sm">© <?= date('Y') ?> Darren Connell. All Rights Reserved.</p>
+        <nav class="mt-2 flex items-center justify-center gap-2 text-sm" aria-label="Legal">
+            <a href="/privacy.php" class="text-slate-400 hover:text-primary transition-colors">Privacy</a>
+            <span class="text-slate-500">·</span>
+            <a href="/terms.php" class="text-slate-400 hover:text-primary transition-colors">Terms</a>
+            <span class="text-slate-500">·</span>
+            <a href="/cookie-policy.php" class="text-slate-400 hover:text-primary transition-colors">Cookies</a>
+        </nav>
 </div>
 </div>
 </footer>

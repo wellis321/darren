@@ -61,6 +61,7 @@ if (preg_match('#^/merch/([a-z0-9\-]+)$#', $path, $m)) {
     $content = ob_get_clean();
     ob_start();
     include $baseDir . '/includes/popup-stitch.php';
+    include $baseDir . '/includes/cookie-consent-stitch.php';
     $content = str_replace('</body>', ob_get_clean() . "\n</body>", $content);
     echo $content;
     exit;
@@ -86,6 +87,12 @@ $routes = [
     '/store.php' => 'merch',
     '/search' => 'search',
     '/search.php' => 'search',
+    '/privacy' => 'privacy',
+    '/privacy.php' => 'privacy',
+    '/terms' => 'terms',
+    '/terms.php' => 'terms',
+    '/cookie-policy' => 'cookie-policy',
+    '/cookie-policy.php' => 'cookie-policy',
 ];
 
 $page = $routes[$path] ?? null;
@@ -93,12 +100,13 @@ if ($page) {
     ob_start();
     include $baseDir . "/pages/{$page}.php";
     $content = ob_get_clean();
-    $popupPages = ['index', 'merch', 'live', 'about', 'podcast', 'media', 'bookings', 'search'];
+    $popupPages = ['index', 'merch', 'live', 'about', 'podcast', 'media', 'bookings', 'search', 'privacy', 'terms', 'cookie-policy'];
     if (in_array($page, $popupPages)) {
         ob_start();
         include $baseDir . '/includes/popup-stitch.php';
-        $popupHtml = ob_get_clean();
-        $content = str_replace('</body>', $popupHtml . "\n</body>", $content);
+        include $baseDir . '/includes/cookie-consent-stitch.php';
+        $injectHtml = ob_get_clean();
+        $content = str_replace('</body>', $injectHtml . "\n</body>", $content);
         echo $content;
     } else {
         include $baseDir . '/includes/layout-stitch.php';

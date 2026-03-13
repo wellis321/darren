@@ -156,7 +156,13 @@ $otherProducts = array_slice(array_filter($allProducts, fn($op) => $op['slug'] !
     <div class="max-w-7xl mx-auto px-4 text-center text-slate-500 dark:text-slate-400 text-sm">
         <p>&copy; <?= date('Y') ?> Darren Connell. All rights reserved.</p>
         <p class="mt-2 opacity-80">This site does not handle personal requests for autographs or video messages.</p>
-        <a href="/admin/" class="text-primary/70 hover:text-primary mt-2 inline-block text-xs">Admin</a>
+        <nav class="mt-2 flex items-center justify-center gap-2" aria-label="Legal">
+        <a href="/privacy.php" class="text-slate-400 hover:text-primary transition-colors">Privacy</a>
+        <span class="text-slate-500 dark:text-slate-600">·</span>
+        <a href="/terms.php" class="text-slate-400 hover:text-primary transition-colors">Terms</a>
+        <span class="text-slate-500 dark:text-slate-600">·</span>
+        <a href="/cookie-policy.php" class="text-slate-400 hover:text-primary transition-colors">Cookies</a>
+    </nav>
     </div>
 </footer>
 </body>
