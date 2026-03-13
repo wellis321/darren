@@ -2,7 +2,12 @@
 /**
  * Front controller - handles all requests
  * Run: cd public && php -S localhost:8001 index.php
+ *
+ * Supports two layouts:
+ * - Standard: project/public/index.php (base = project root)
+ * - Flat: document root has index.php, config/, includes/, pages/, admin/, api/, assets/
  */
+$baseDir = is_dir(__DIR__ . '/config') ? __DIR__ : dirname(__DIR__);
 // Pass through existing static files
 $path = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
 $file = __DIR__ . $path;
@@ -22,17 +27,17 @@ if ($path === '/favicon.ico') {
 $reqPath = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
 $reqPath = rtrim($reqPath, '/') ?: '/';
 if ($reqPath === '/sitemap.xml') {
-    require_once dirname(__DIR__) . '/config/env.php';
+    require_once $baseDir . '/config/env.php';
     include __DIR__ . '/sitemap.xml.php';
     exit;
 }
 if ($reqPath === '/llms.txt') {
-    require_once dirname(__DIR__) . '/config/env.php';
+    require_once $baseDir . '/config/env.php';
     include __DIR__ . '/llms.txt.php';
     exit;
 }
 if ($reqPath === '/ai.txt') {
-    require_once dirname(__DIR__) . '/config/env.php';
+    require_once $baseDir . '/config/env.php';
     include __DIR__ . '/ai.txt.php';
     exit;
 }
@@ -42,9 +47,9 @@ if (preg_match('#^/public/?$#', parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_UR
     exit;
 }
 
-require_once dirname(__DIR__) . '/config/session.php';
-require_once dirname(__DIR__) . '/config/database.php';
-require_once dirname(__DIR__) . '/includes/functions.php';
+require_once $baseDir . '/config/session.php';
+require_once $baseDir . '/config/database.php';
+require_once $baseDir . '/includes/functions.php';
 
 // Parse request
 $requestUri = $_SERVER['REQUEST_URI'];
@@ -79,13 +84,13 @@ $routes = [
 $page = $routes[$path] ?? null;
 if ($page) {
     ob_start();
-    include dirname(__DIR__) . "/pages/{$page}.php";
+    include $baseDir . "/pages/{$page}.php";
     $content = ob_get_clean();
     // Index, merch, live, about, podcast, media, and bookings output full Stitch HTML (no layout wrapper)
     if (in_array($page, ['index', 'merch', 'live', 'about', 'podcast', 'media', 'bookings', 'search'])) {
         echo $content;
     } else {
-        include dirname(__DIR__) . '/includes/layout-stitch.php';
+        include $baseDir . '/includes/layout-stitch.php';
     }
     exit;
 }
@@ -96,4 +101,4 @@ if (preg_match('/\.(css|js|jpg|jpeg|png|gif|ico|svg|woff2?)$/', $path)) {
 }
 
 http_response_code(404);
-include dirname(__DIR__) . '/includes/errors/404.php';
+include $baseDir . '/includes/errors/404.php';
