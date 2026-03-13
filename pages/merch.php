@@ -75,10 +75,10 @@ $featured = array_filter($products, fn($p) => !empty($p['is_featured']));
 <section class="p-4">
 <h1 class="text-slate-900 dark:text-slate-100 text-2xl font-bold leading-tight mb-4">Featured</h1>
 <?php foreach ($featured as $p): ?>
-<?php $imgFb = 'https://images.unsplash.com/photo-1666731843459-4005513dac66?w=800&q=80'; $imgFbLocal = BASE_PATH . '/assets/images/product-placeholder.svg'; $img = $p['image_url'] ?: $imgFb; ?>
+<?php $imgFbLocal = BASE_PATH . '/assets/images/product-placeholder.svg'; $img = ($p['featured_image_url'] ?? $p['image_url']) ?: $imgFbLocal; ?>
 <div class="mb-8">
 <div class="flex flex-col overflow-hidden rounded-xl border border-primary/10 bg-primary/5">
-<a href="/merch/<?= e($p['slug']) ?>" class="block aspect-[4/3] w-full overflow-hidden bg-center bg-cover">
+<a href="/merch/<?= e($p['slug']) ?>" class="block aspect-[3/1] w-full overflow-hidden bg-center bg-cover">
 <img src="<?= e($img) ?>" alt="<?= e($p['title']) ?>" class="h-full w-full object-cover" onerror="this.onerror=null;this.src='<?= e($imgFbLocal) ?>'"/>
 </a>
 <div class="flex flex-col gap-2 p-4">

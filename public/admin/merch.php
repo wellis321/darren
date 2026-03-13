@@ -17,6 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && verify_csrf()) {
     $description = trim($_POST['description'] ?? '') ?: null;
     $price = trim($_POST['price'] ?? '') ?: null;
     $image_url = trim($_POST['image_url'] ?? '') ?: null;
+    $featured_image_url = trim($_POST['featured_image_url'] ?? '') ?: null;
     $category = trim($_POST['category'] ?? 'general') ?: 'general';
     $sizes = trim($_POST['sizes'] ?? '') ?: null;
     $buy_url = trim($_POST['buy_url'] ?? '') ?: null;
@@ -25,12 +26,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && verify_csrf()) {
 
     if ($title && $slug) {
         if ($id) {
-            $stmt = $pdo->prepare("UPDATE products SET slug=?, title=?, description=?, price=?, image_url=?, category=?, sizes=?, buy_url=?, is_featured=?, sort_order=? WHERE id=?");
-            $stmt->execute([$slug, $title, $description, $price, $image_url, $category, $sizes, $buy_url, $is_featured, $sort_order, $id]);
+            $stmt = $pdo->prepare("UPDATE products SET slug=?, title=?, description=?, price=?, image_url=?, featured_image_url=?, category=?, sizes=?, buy_url=?, is_featured=?, sort_order=? WHERE id=?");
+            $stmt->execute([$slug, $title, $description, $price, $image_url, $featured_image_url, $category, $sizes, $buy_url, $is_featured, $sort_order, $id]);
             $message = 'Product updated.';
         } else {
-            $stmt = $pdo->prepare("INSERT INTO products (slug, title, description, price, image_url, category, sizes, buy_url, is_featured, sort_order) VALUES (?,?,?,?,?,?,?,?,?,?)");
-            $stmt->execute([$slug, $title, $description, $price, $image_url, $category, $sizes, $buy_url, $is_featured, $sort_order]);
+            $stmt = $pdo->prepare("INSERT INTO products (slug, title, description, price, image_url, featured_image_url, category, sizes, buy_url, is_featured, sort_order) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+            $stmt->execute([$slug, $title, $description, $price, $image_url, $featured_image_url, $category, $sizes, $buy_url, $is_featured, $sort_order]);
             $message = 'Product added.';
         }
     }
@@ -47,7 +48,7 @@ if (isset($_GET['edit'])) {
     $stmt->execute([(int)$_GET['edit']]);
     $edit = $stmt->fetch();
 } elseif (isset($_GET['action']) && $_GET['action'] === 'add') {
-    $edit = ['id' => 0, 'slug' => '', 'title' => '', 'description' => '', 'price' => '', 'image_url' => '', 'category' => 'tour_apparel', 'sizes' => '', 'buy_url' => '', 'is_featured' => 0, 'sort_order' => 0];
+    $edit = ['id' => 0, 'slug' => '', 'title' => '', 'description' => '', 'price' => '', 'image_url' => '', 'featured_image_url' => '', 'category' => 'tour_apparel', 'sizes' => '', 'buy_url' => '', 'is_featured' => 0, 'sort_order' => 0];
 }
 
 $stmt = $pdo->query("SELECT * FROM products ORDER BY sort_order ASC, created_at DESC");
@@ -85,6 +86,10 @@ ob_start();
     <div class="form-group">
         <label>Image URL</label>
         <input type="url" name="image_url" value="<?= e($edit['image_url'] ?? '') ?>" placeholder="https://...">
+    </div>
+    <div class="form-group">
+        <label>Featured image URL <small>(optional – used in the shop banner when featured; leave blank to use main image)</small></label>
+        <input type="url" name="featured_image_url" value="<?= e($edit['featured_image_url'] ?? '') ?>" placeholder="https://...">
     </div>
     <div class="form-group">
         <label>Category</label>
