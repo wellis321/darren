@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f46a25",
+                        "background-light": "#f8f6f5",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .filled-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
+<div class="relative flex min-h-screen flex-col overflow-x-hidden">
+<!-- Header Nav -->
+<header class="sticky top-0 z-50 flex items-center bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md p-4 justify-between border-b border-primary/10">
+<div class="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary cursor-pointer">
+<span class="material-symbols-outlined">arrow_back</span>
+</div>
+<h1 class="text-xl font-bold tracking-tight flex-1 text-center">Darren Connell Media</h1>
+<div class="flex w-10 items-center justify-end">
+<button class="flex size-10 items-center justify-center rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined">share</span>
+</button>
+</div>
+</header>
+<!-- Category Tabs -->
+<nav class="sticky top-[73px] z-40 bg-background-light dark:bg-background-dark border-b border-primary/10">
+<div class="flex px-4 gap-8 overflow-x-auto no-scrollbar">
+<a class="flex flex-col items-center justify-center border-b-2 border-primary text-primary pb-3 pt-4" href="#">
+<span class="text-sm font-bold">All Media</span>
+</a>
+<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 dark:text-slate-400 pb-3 pt-4 hover:text-primary transition-colors" href="#">
+<span class="text-sm font-bold">Stand-up Clips</span>
+</a>
+<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 dark:text-slate-400 pb-3 pt-4 hover:text-primary transition-colors" href="#">
+<span class="text-sm font-bold">Sketches</span>
+</a>
+<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 dark:text-slate-400 pb-3 pt-4 hover:text-primary transition-colors" href="#">
+<span class="text-sm font-bold">Gallery</span>
+</a>
+</div>
+</nav>
+<main class="flex-1 pb-24">
+<!-- Video Section -->
+<section class="p-4">
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-lg font-bold tracking-tight">Stand-up &amp; Sketches</h2>
+<span class="text-primary text-sm font-medium">See all</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Video Card 1 -->
+<div class="group relative overflow-hidden rounded-xl bg-slate-200 dark:bg-slate-800 aspect-video flex items-end">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Darren Connell performing live stand-up on stage with spotlight" style='background-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuC2x2RvQ94elG3kFeGBMYJ-n381iJDvkIKh3m4meBsYOfOp7sHjTYYscwLDSci1PBrlsZOKbHfKKWsdsI31t4KS4-7frVE2n5Z5Rx4px3kMoBi7c6EaGy1zUk0Rkbw2TdJi-4FY0WjhRpF7NGPzDaciLQwD0HF5_Fnoil78kqBVrFBLv-UJ028PL4F46SInoJWFgF50YkRI7KoOUaWLMAcyiZFoRD6YUfrej7HbVfvVcNr1g_GznQWQVUq-JRk33gY2VaywSlzd8N4");'></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="size-14 rounded-full bg-primary/90 flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined filled-icon text-3xl">play_arrow</span>
+</div>
+</div>
+<div class="relative p-4 w-full">
+<p class="text-white text-base font-bold leading-tight">Live at the Hydro: Full Set</p>
+<p class="text-white/70 text-xs mt-1">12:45 • 1.2M views</p>
+</div>
+</div>
+<!-- Video Card 2 -->
+<div class="group relative overflow-hidden rounded-xl bg-slate-200 dark:bg-slate-800 aspect-video flex items-end">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Close up of comedian Darren Connell holding a microphone" style='background-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuBTgs-GiA5K5Ir72DugYDidvdGwAPj2zO3pZyIkSeBEF56-yQlzNtOVhfo3o3O1XkQFBCdMFLYFZTkdTWVT5zZeTWnAaTMMXD-_RM_oImwykpjvW7A5kR47OXHjauZYFPz80PaNosEabx6vFR_OVYqY_qeDnsCndLb3dS0hbzk-m0wGYeOlOC76tNMFWlVrahbvknYbUdsPeSRiET-Xl4KhXvmxALR6cXMLO5vzgLQyyFvGyH0TxqQ4VE47MTq1rJsGqVQdxkw9W1I");'></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="size-14 rounded-full bg-primary/90 flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined filled-icon text-3xl">play_arrow</span>
+</div>
+</div>
+<div class="relative p-4 w-full">
+<p class="text-white text-base font-bold leading-tight">The Darren Connell Show: S1 Highlights</p>
+<p class="text-white/70 text-xs mt-1">08:20 • 450K views</p>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4">
+<!-- Smaller Video Cards -->
+<div class="group relative aspect-square rounded-lg overflow-hidden bg-slate-800">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Sketch comedy scene with two people in a cafe" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD0uCv0XdMsDPX8-fkPz2IzPhIW4zExzdUy8Urm5EKdSO5qvfcc-gPykhUCUTPKjEVJyec2dT6--Yk3t39kKfYrszsF2Gq1x3JAbRlw53P3hxn4GZNi9lgpmnSiXXDWX3Z1-9rvcQW-IHbgf3eWmJSVf35nz6tmD39Iqjkw7-pGnNeE-Nk21OalpfbQKSQXQBvqmXRt7W4WUK6UQxzNikXJh0B9I-Le3V51i-ejNyUyFajppLLdFXGqaDVPhAibCQAu7kVXMgv3VEg");'></div>
+<div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white text-4xl">play_circle</span>
+</div>
+<div class="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/80 to-transparent">
+<p class="text-white text-xs font-bold line-clamp-1">Sketch: The Roll Shop</p>
+</div>
+</div>
+<div class="group relative aspect-square rounded-lg overflow-hidden bg-slate-800">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Audience laughing at a comedy show" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBS2LGCzKOTLfE1bblyY-jqviF6zbnzf8BJOejzIbgVRywqbZ7Pg-xKFRotGeI3dD3MT1zQ3ZwHNRnTHC9bt0FUTY50CP5vtVDs-gCap37W3fMSwBJILGgF7qUUk0DtN7le_kKRed_MVy-L8q-SNapIkJHxTJgAQfwurYkFHnOSdnPJbciRchWwozFg-oXYlzwJI0dd-nTqSy0jxx9qOz0F-5QLQ5r_h7lLaja7FOXJs2Db_FooAqQFJOttwGCdYuBZ5dcB_AmD-Ho");'></div>
+<div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white text-4xl">play_circle</span>
+</div>
+<div class="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/80 to-transparent">
+<p class="text-white text-xs font-bold line-clamp-1">Glasgow Comedy Festival</p>
+</div>
+</div>
+<div class="group relative aspect-square rounded-lg overflow-hidden bg-slate-800">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Backstage photo of a comedian preparing" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAs9DHhPW0gQHTW1YkdRa2b5X2L0CxY63wa1I9-Wy2L1JVE1bnJVqmxlH4TOZmSqQdch-xO3XXJYzmL_CebWLLeYwdGIjirv8VSl0_5E3O17OpSobz5N4QSafNDzDJAHsl9bUEnnydFA03xOyZHcB3_deSWaRDU0mGPql7WTPcABoYgrQxuV0RJRkDhe4eaq1Bs4MzljNVN1vHNd5Z1Mn0-hK1gj4bJRdUsv6_W-jgiyUh0zRIxn5E6SVd_feWxsAUv_HRk6Sx9nPI");'></div>
+<div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white text-4xl">play_circle</span>
+</div>
+<div class="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/80 to-transparent">
+<p class="text-white text-xs font-bold line-clamp-1">Backstage Vlogs</p>
+</div>
+</div>
+<div class="group relative aspect-square rounded-lg overflow-hidden bg-slate-800">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Abstract colorful stage lights" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC_fRwmYezNkinkg8UnZZDnmGNiYMmHxP1lnQUkINT25-poqk8DKtD4x7_4Td2sAa5BgaW50X9bW8Bt3y-4-H_sGSlEz7H2Xt4oqljbju_x9CFhEG50kAjzjcbj_IUf9SOdXpcPgygQvMCHD3dcwaGy3wJVWb4ckToWHxpphcBI8J_jORZc5FuDx5AV3KXnmXopCCaV5I9DOQdv7gDq_OS8SqBdVNYJZZaSYmdMrzkN-77izfR5v76dDQnTY7Htq6Gmh_Lh1sK3Qnw");'></div>
+<div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white text-4xl">play_circle</span>
+</div>
+<div class="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/80 to-transparent">
+<p class="text-white text-xs font-bold line-clamp-1">Funny Moments #4</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Photo Gallery Section -->
+<section class="p-4 mt-4">
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-lg font-bold tracking-tight">Performance Photos</h2>
+<span class="text-primary text-sm font-medium">View grid</span>
+</div>
+<div class="columns-2 md:columns-3 lg:columns-4 gap-3 space-y-3">
+<div class="break-inside-avoid">
+<img alt="Performance Photo 1" class="w-full rounded-xl object-cover hover:opacity-90 transition-opacity cursor-zoom-in" data-alt="Comedian performing with dramatic lighting and smoke" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuAi1SFZUrbQsp9y46tKI3i8t-V1YLoxibicq9xCsAiyO7q0WW6_cN-745UPi4m0V6pHMkdy1dceMGNHulb2fPlIg59WopBVedMyD5PamUeOGaCokOrK7MqRKSpExcJJL-GW9jKHBochdPFHIRxKXLtK-eRcAykTiSnY2Fsl3Kzfb0gfqQP11ABkM43L5lKGOaw9tSzQgL0bqS1Nr8SPdGsg5T414MqM4sd3neoExJbdu6Ji_hy0XN2UsY_oiOI4KkqxwaGoiEjq4"/>
+</div>
+<div class="break-inside-avoid">
+<img alt="Performance Photo 2" class="w-full rounded-xl object-cover hover:opacity-90 transition-opacity cursor-zoom-in" data-alt="High energy shot of comedian pointing at the crowd" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlNFKI1savZfO1rJ9fadCyLu2VXedD1seBgB8w4VkDaT057EItoofmsJq8C1Tz-wk9DkOUDizObllo9CrIPpoqqdoFVDwiTIF1m18-Q4laxWBCR1LIC8LgdP69VAAaGOJP4gCOoZwRLW5ZwKV0_hm_WZBKIB1apMx-nT9Ax9NE5OxH7lenoRJQ66mu8tJTwCpkM9F-J_uuD5MmWsYfTvorJKVfCMRZ969SPdd0QetWspa51o401wesRl-7Suh1lFqcAe6SzTA50Ns"/>
+</div>
+<div class="break-inside-avoid">
+<img alt="Performance Photo 3" class="w-full rounded-xl object-cover hover:opacity-90 transition-opacity cursor-zoom-in" data-alt="Black and white portrait of comedian laughing" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADJ3Z1djxrWrWf3dm5t3dmfxepUSl9UcOaxhFTqX6L3N1dSrUxl21lJCqgjWJmI9l9DualNv6BkcSfdE6h26g4Fu2ef4P_SYCYf94b3qwRfhX4lErZZnO9P_zJMnl0SB6hOW7X_oQe7aaUyyy-TBgxpwg34o6OgvIR5eIkUOfcrnzPCWSnmj-tcGGGCoWVpcEm2qLfCY_oqdjTK-pVUMx8RenWKrh7-7a-IZO4bHVuYYpvEWDNzyyj9FrIZb4N4yJPQ-VzPWqS2Jc"/>
+</div>
+<div class="break-inside-avoid">
+<img alt="Performance Photo 4" class="w-full rounded-xl object-cover hover:opacity-90 transition-opacity cursor-zoom-in" data-alt="Wide shot of a packed comedy club venue" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBou405Vh3GwY3c7RHP-WBZXtPkIdMz3J94R4ZgRo2eJNoSrv74yJKFMJXH4EVwFDVCgzq43aH6rRmfq03Z-RMb5ZrUWs1CiiG3XRbG85lOk3Jmd7wksbUrRCGuCEIwzJuRHaV9cm7_R5HDysi-knzTeEmaF-JGCT7b1x_DlMPdJzMaQ1FmkgH8fTEQlZUrzbVgNR-30sY5hlCyRKdNhV6o7C_n7BIVeXCYEz_BZAxbNEp3T1C5i_ydkBvKy3EPYJctqzTOYPQk5TE"/>
+</div>
+<div class="break-inside-avoid">
+<img alt="Performance Photo 5" class="w-full rounded-xl object-cover hover:opacity-90 transition-opacity cursor-zoom-in" data-alt="Candid shot of comedian talking with fans after a show" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoeIJVszM_NxgSRRhXGZuWqOMVQUpWGpfABI6RKUSQesOJl0-CCy503SJTJchCdg_-cdbA2uJsSkMuQ2p1DvxB-fW822S2wZXCHMBSUqrRwFYV2G8eHWArw-yJlaZMef6cJpGcOSsSDODj5NQbWvpTv0RtHBZQR8yHchtGbyDjywt2sDtiRwQpc2qEWG9YACmYpmKW1XfTLOND7Bgm6drj166V6Zilu9YCxjNO5lQX7EOG_dG1Ni0gYI5rOu975ZMzt8c1NNBUh6o"/>
+</div>
+<div class="break-inside-avoid">
+<img alt="Performance Photo 6" class="w-full rounded-xl object-cover hover:opacity-90 transition-opacity cursor-zoom-in" data-alt="Stage floor with microphone stand and warm orange lights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDY8kkdXtJjsjhGUq0lDpkMbxwimRYa-i683EWsAeo5pZJKI6MyFLKFWJtED7H4RR-hu932QVwmUehk-xhbjJQNEfn-6Ue_sj5Gtwn6n8Qai9Jp0vIhFnT-XLceOxVWWhubp3XjJfybi74lRS2Dwti6edfyhI3J1LMGNZw_uqdx6S-mgqQQksqSyE52gZagM7zVMt4bFizAIlI24PS7u9ZRAaO1CWll68_-hH5GJo2N_pR1LXqfMAEy7sej4QM3N7Gdp49f9MuEy-c"/>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<div class="fixed bottom-0 left-0 right-0 z-50 flex h-auto flex-col bg-background-light dark:bg-background-dark border-t border-primary/10 px-4 pb-6 pt-2">
+<div class="flex gap-2">
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-500 dark:text-slate-400" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined">home</span>
+</div>
+<p class="text-[10px] font-medium leading-normal tracking-wide uppercase">Home</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-500 dark:text-slate-400" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined">confirmation_number</span>
+</div>
+<p class="text-[10px] font-medium leading-normal tracking-wide uppercase">Tour</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-primary" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined filled-icon">photo_library</span>
+</div>
+<p class="text-[10px] font-medium leading-normal tracking-wide uppercase">Media</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-500 dark:text-slate-400" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined">shopping_bag</span>
+</div>
+<p class="text-[10px] font-medium leading-normal tracking-wide uppercase">Merch</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-500 dark:text-slate-400" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined">mail</span>
+</div>
+<p class="text-[10px] font-medium leading-normal tracking-wide uppercase">Contact</p>
+</a>
+</div>
+</div>
+</div>
+</body></html>

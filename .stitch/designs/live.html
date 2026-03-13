@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f46a25",
+                        "background-light": "#f8f6f5",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Header Section -->
+<header class="flex items-center bg-background-light dark:bg-background-dark p-4 border-b border-primary/10 justify-between sticky top-0 z-50 backdrop-blur-md">
+<div class="flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-primary/10 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-slate-900 dark:text-slate-100">arrow_back</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight flex-1 text-center font-display">
+                Darren Connell: Tour Dates
+            </h2>
+<div class="flex w-10 items-center justify-end">
+<button class="flex size-10 items-center justify-center rounded-full hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-slate-900 dark:text-slate-100">share</span>
+</button>
+</div>
+</header>
+<!-- Hero Banner -->
+<div class="p-4">
+<div class="relative flex flex-col justify-end overflow-hidden rounded-xl min-h-[240px] group" data-alt="Comedian performing on stage with atmospheric lighting" style='background-image: linear-gradient(0deg, rgba(34, 22, 16, 0.9) 0%, rgba(34, 22, 16, 0.2) 50%, rgba(34, 22, 16, 0) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuBB9bwQaCBlXLk1OcHnKdOFJYanPOSYoZ98MFcbXwjMI5X290BsZ_uTIKAG_3fXLcSGKJkRLYhms_QFv4FFQrVFQvOgvpiovu0dBvS7P4Ra4Wc_GhgnCvFrBPyMIK_cON9ce0i-aYSJUnKQckYvlV6UfuoSjVvFPUQfAiE34I7Gu1GuLkSB-UeAkPBgSP9LFu3inM51Z4ZfqVSLvo3XSwR5VI8Z3Xz3V6TS9lYjiLe59ZP89FOfjkfFk0KQ0Zgg-AcgiU3CCThn5kM"); background-size: cover; background-position: center;'>
+<div class="flex flex-col p-6">
+<span class="bg-primary text-white text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded w-fit mb-2">2024 Tour</span>
+<h1 class="text-white text-3xl font-bold leading-tight font-display">Live &amp; Uncut</h1>
+<p class="text-slate-300 text-sm mt-1">Experience the raw energy of Darren Connell live on stage across the UK.</p>
+</div>
+</div>
+</div>
+<!-- Section Title -->
+<div class="px-4 py-2 flex items-center justify-between">
+<h2 class="text-slate-900 dark:text-slate-100 text-xl font-bold leading-tight tracking-tight font-display">Upcoming Shows</h2>
+<span class="text-primary text-xs font-bold uppercase tracking-wider">12 Dates Found</span>
+</div>
+<!-- Tour Dates List -->
+<div class="flex flex-col gap-1 px-4 pb-24">
+<!-- Show Item 1 -->
+<div class="flex flex-col sm:flex-row gap-4 bg-white dark:bg-background-dark border border-primary/5 dark:border-primary/10 p-4 rounded-xl items-center justify-between hover:border-primary/40 transition-all duration-300">
+<div class="flex items-start gap-4 w-full">
+<div class="flex flex-col items-center justify-center rounded-lg bg-primary/10 dark:bg-primary/20 shrink-0 size-14 border border-primary/20">
+<span class="text-primary font-bold text-lg leading-none">12</span>
+<span class="text-primary text-[10px] font-bold uppercase">Oct</span>
+</div>
+<div class="flex flex-1 flex-col justify-center">
+<p class="text-slate-900 dark:text-slate-100 text-base font-bold font-display">Glasgow - The Stand Comedy Club</p>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Glasgow, Scotland</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="material-symbols-outlined text-primary text-xs">schedule</span>
+<p class="text-slate-500 dark:text-slate-400 text-xs">Friday • 8:00 PM</p>
+</div>
+</div>
+</div>
+<div class="shrink-0 w-full sm:w-auto">
+<button class="w-full sm:min-w-[120px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold transition-transform hover:scale-105 active:scale-95 shadow-lg shadow-primary/20">
+                        Book Now
+                    </button>
+</div>
+</div>
+<!-- Show Item 2 -->
+<div class="flex flex-col sm:flex-row gap-4 bg-white dark:bg-background-dark border border-primary/5 dark:border-primary/10 p-4 rounded-xl items-center justify-between hover:border-primary/40 transition-all duration-300 mt-2">
+<div class="flex items-start gap-4 w-full">
+<div class="flex flex-col items-center justify-center rounded-lg bg-primary/10 dark:bg-primary/20 shrink-0 size-14 border border-primary/20">
+<span class="text-primary font-bold text-lg leading-none">15</span>
+<span class="text-primary text-[10px] font-bold uppercase">Oct</span>
+</div>
+<div class="flex flex-1 flex-col justify-center">
+<p class="text-slate-900 dark:text-slate-100 text-base font-bold font-display">Edinburgh - Monkey Barrel Comedy</p>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Edinburgh, Scotland</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="material-symbols-outlined text-primary text-xs">schedule</span>
+<p class="text-slate-500 dark:text-slate-400 text-xs">Monday • 7:30 PM</p>
+</div>
+</div>
+</div>
+<div class="shrink-0 w-full sm:w-auto">
+<button class="w-full sm:min-w-[120px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold transition-transform hover:scale-105 active:scale-95 shadow-lg shadow-primary/20">
+                        Book Now
+                    </button>
+</div>
+</div>
+<!-- Show Item 3 (Sold Out State) -->
+<div class="flex flex-col sm:flex-row gap-4 bg-white/50 dark:bg-background-dark/50 border border-slate-200 dark:border-slate-800 p-4 rounded-xl items-center justify-between mt-2 opacity-80">
+<div class="flex items-start gap-4 w-full">
+<div class="flex flex-col items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 shrink-0 size-14 border border-slate-200 dark:border-slate-700">
+<span class="text-slate-500 font-bold text-lg leading-none">18</span>
+<span class="text-slate-500 text-[10px] font-bold uppercase">Oct</span>
+</div>
+<div class="flex flex-1 flex-col justify-center">
+<p class="text-slate-500 dark:text-slate-400 text-base font-bold font-display line-through">Aberdeen - Lemon Tree</p>
+<p class="text-slate-400 dark:text-slate-500 text-sm font-medium">Aberdeen, Scotland</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="material-symbols-outlined text-slate-400 text-xs">block</span>
+<p class="text-slate-400 dark:text-slate-500 text-xs uppercase font-bold tracking-tighter">Sold Out</p>
+</div>
+</div>
+</div>
+<div class="shrink-0 w-full sm:w-auto">
+<button class="w-full sm:min-w-[120px] cursor-not-allowed items-center justify-center rounded-lg h-10 px-4 bg-slate-200 dark:bg-slate-800 text-slate-500 text-sm font-bold" disabled="">
+                        Sold Out
+                    </button>
+</div>
+</div>
+<!-- Show Item 4 -->
+<div class="flex flex-col sm:flex-row gap-4 bg-white dark:bg-background-dark border border-primary/5 dark:border-primary/10 p-4 rounded-xl items-center justify-between hover:border-primary/40 transition-all duration-300 mt-2">
+<div class="flex items-start gap-4 w-full">
+<div class="flex flex-col items-center justify-center rounded-lg bg-primary/10 dark:bg-primary/20 shrink-0 size-14 border border-primary/20">
+<span class="text-primary font-bold text-lg leading-none">22</span>
+<span class="text-primary text-[10px] font-bold uppercase">Oct</span>
+</div>
+<div class="flex flex-1 flex-col justify-center">
+<p class="text-slate-900 dark:text-slate-100 text-base font-bold font-display">Newcastle - The Stand</p>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Newcastle, England</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="material-symbols-outlined text-primary text-xs">schedule</span>
+<p class="text-slate-500 dark:text-slate-400 text-xs">Friday • 8:30 PM</p>
+</div>
+</div>
+</div>
+<div class="shrink-0 w-full sm:w-auto">
+<button class="w-full sm:min-w-[120px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold transition-transform hover:scale-105 active:scale-95 shadow-lg shadow-primary/20">
+                        Book Now
+                    </button>
+</div>
+</div>
+<!-- Show Item 5 -->
+<div class="flex flex-col sm:flex-row gap-4 bg-white dark:bg-background-dark border border-primary/5 dark:border-primary/10 p-4 rounded-xl items-center justify-between hover:border-primary/40 transition-all duration-300 mt-2">
+<div class="flex items-start gap-4 w-full">
+<div class="flex flex-col items-center justify-center rounded-lg bg-primary/10 dark:bg-primary/20 shrink-0 size-14 border border-primary/20">
+<span class="text-primary font-bold text-lg leading-none">29</span>
+<span class="text-primary text-[10px] font-bold uppercase">Oct</span>
+</div>
+<div class="flex flex-1 flex-col justify-center">
+<p class="text-slate-900 dark:text-slate-100 text-base font-bold font-display">London - Soho Theatre</p>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">London, UK</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="material-symbols-outlined text-primary text-xs">schedule</span>
+<p class="text-slate-500 dark:text-slate-400 text-xs">Tuesday • 9:00 PM</p>
+</div>
+</div>
+</div>
+<div class="shrink-0 w-full sm:w-auto">
+<button class="w-full sm:min-w-[120px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold transition-transform hover:scale-105 active:scale-95 shadow-lg shadow-primary/20">
+                        Book Now
+                    </button>
+</div>
+</div>
+</div>
+<!-- Sticky Bottom Nav Bar -->
+<nav class="fixed bottom-0 left-0 right-0 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-lg border-t border-primary/10 px-4 pb-4 pt-2 flex justify-between items-center z-50">
+<a class="flex flex-col items-center gap-1 group flex-1" href="#">
+<span class="material-symbols-outlined text-slate-500 dark:text-slate-400 group-hover:text-primary transition-colors">home</span>
+<span class="text-[10px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 group-hover:text-primary">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 group flex-1" href="#">
+<span class="material-symbols-outlined text-primary">confirmation_number</span>
+<span class="text-[10px] font-bold uppercase tracking-widest text-primary">Tour</span>
+</a>
+<a class="flex flex-col items-center gap-1 group flex-1" href="#">
+<span class="material-symbols-outlined text-slate-500 dark:text-slate-400 group-hover:text-primary transition-colors">play_circle</span>
+<span class="text-[10px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 group-hover:text-primary">Videos</span>
+</a>
+<a class="flex flex-col items-center gap-1 group flex-1" href="#">
+<span class="material-symbols-outlined text-slate-500 dark:text-slate-400 group-hover:text-primary transition-colors">person</span>
+<span class="text-[10px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 group-hover:text-primary">About</span>
+</a>
+</nav>
+</div>
+</body></html>

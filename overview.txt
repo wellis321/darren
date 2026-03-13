@@ -1,0 +1,69 @@
+A website for Darren Connell should be structured to highlight his dual career as a BAFTA-nominated actor and a leading stand-up comedian while prioritising ease of navigation for both fans and industry bookers
+,
+,
+.
+Website Structure
+Following professional standards for comedians, the site should use a clean and simple navigation menu
+,
+. Recommended pages include:
+Home: A dynamic landing page with his most vital current info
+.
+About/Biography: Detail his journey from being a trolley collector in Glasgow to a Scottish BAFTA New Talent nominee and his role as Bobby Muir in Scot Squad
+,
+,
+.
+Live/Tour Dates: A 100% accurate calendar of upcoming shows, such as his appearances at The Glee Club or the Glasgow International Comedy Festival
+,
+.
+Video/Media: A gallery featuring high-quality clips of his stand-up (e.g., Trolleywood or Against the Grain) and acting showreels
+,
+,
+.
+Podcast: Dedicated space for "The Darren Connell Show", "Straight White Whale", and "Glaswegians Anonymous"
+,
+,
+.
+Bookings/Contact: A clear page for commercial enquiries, including a booking form for name, budget, and event description
+,
+,
+.
+Homepage Layout and Content
+The homepage should serve as a high-impact "sales page" that quickly establishes his brand
+,
+.
+Hero Section: A high-resolution professional headshot paired with a strong tagline like "Leading Comedian & Actor & Scottish BAFTA Nominee"
+,
+.
+Primary Call to Action (CTA): Prominent buttons for "Enquire Now" or "Buy Tickets"
+,
+.
+Social Proof/Testimonials: A standout quote from industry peers, such as Kevin Bridges' praise: "A natural with a real bright future"
+.
+Latest Gigs: A snapshot of his next 3–5 shows with direct ticket links
+,
+.
+Multimedia Integration:
+An embedded YouTube video or channel feed to showcase his "dark and surreal" comedy style
+,
+.
+Live Social Feeds: A grid of Instagram or TikTok posts to keep the site fresh and visually engaging
+,
+.
+Email Mailing List Signup: An incentive-based signup form (e.g., "Join for exclusive tour announcements") to build a direct connection with fans
+,
+,
+.
+Podcast Feature: A section highlighting his recent podcast episodes to encourage long-term engagement
+,
+.
+Technical Best Practices
+URL: Ideally DarrenConnell.com for maximum professionalism
+.
+Mobile Responsiveness: Essential for fans booking tickets on the go
+,
+.
+Press Kit: A hidden or easy-to-find link to high-resolution photos for media and bookers
+.
+Disclaimer: Clear notice that the site does not handle personal requests for autographs or video messages
+,
+.
