@@ -92,21 +92,24 @@ To regenerate designs from Stitch, use the Stitch MCP tools and the stitch-loop 
 - **Skip link** — "Skip to main content" for keyboard/screen reader users
 - **One H1 per page** — Proper heading hierarchy throughout
 
-## Hostinger Deployment (fixing 403)
+## Hostinger Deployment
 
-**If you're in Hostinger's default/public folder and still get 403:**
+Hostinger's document root is `public_html/YOUR-SITE-FOLDER/` (e.g. `public_html/darren/` or `public_html/papayawhip-crow-673013/`).
 
-1. **Disable .htaccess** — In File Manager, rename `public/.htaccess` to `.htaccess.bak`. Reload the site. If it works, the rewrite rules are conflicting. Use `public/.htaccess.minimal` instead (rename it to `.htaccess`).
+**Option A: Change document root** — Upload the full project into `public_html/YOUR-SITE-FOLDER/`. In hPanel → Domains → your domain → **Document Root**, set it to `public_html/YOUR-SITE-FOLDER/public`. The site will use the standard layout.
 
-2. **Check parent .htaccess** — If your files are in `default/public/`, look for an `.htaccess` in the parent `default/` folder. Hostinger sometimes adds one with `Deny` rules—rename it to test.
+**Option B: Flat layout (if you can't change document root)** — The document root must contain `index.php` directly. Run:
 
-3. **File structure** — The document root (e.g. `default/public`) must contain: `index.php` at the top level, plus `admin/`, `api/`, `assets/`. The parent folder must have `config/`, `includes/`, `pages/`.
+```bash
+php build-flat-deploy.php
+```
 
-4. **Permissions** — 755 for directories, 644 for files. Avoid 777.
+This creates a `deploy/` folder. Upload everything inside `deploy/` to `public_html/YOUR-SITE-FOLDER/`. Create `deploy/.env` with your production settings before uploading.
 
-5. **Direct test** — Try `https://yoursite.com/index.php` — if that loads but `/` does not, the issue is DirectoryIndex.
-
-6. **`.env`** — In the project root (parent of `public`), add `.env` with `APP_ENV=production`, `APP_URL`, and DB credentials.
+**Troubleshooting 404:**
+- 404 on index.php → Files aren't in the document root. **Find it first:** upload `public/check.php` to different folders (e.g. `public_html/`, `public_html/your-site/`, `public_html/your-site/public/`) and visit `https://yoursite.com/check.php` or `https://yoursite.com/your-site/check.php`. When you see "OK", that folder is your document root—put index.php there.
+- 403 → Rename `.htaccess` to `.htaccess.bak` to test; use `.htaccess.minimal` if needed.
+- Permissions: 755 for dirs, 644 for files.
 
 ## Tech Stack
 

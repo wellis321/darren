@@ -44,6 +44,7 @@ $copy('public/sitemap.xml.php');
 $copy('public/llms.txt.php');
 $copy('public/ai.txt.php');
 $copy('public/robots.txt');
+$copy('public/check.php');
 if (file_exists($root . '/public/.htaccess')) {
     $copy('public/.htaccess');
 }
