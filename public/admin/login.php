@@ -41,6 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body class="admin-body">
     <div class="admin-login">
+        <p style="margin-bottom:1rem;"><a href="/">&larr; Back to site</a></p>
         <h1>Admin Login</h1>
         <?php if (!empty($_GET['reset'])): ?><p class="flash flash-success">Password updated. You can log in with your new password.</p><?php endif; ?>
         <?php if (!empty($error)): ?><p class="error"><?= e($error) ?></p><?php endif; ?>
