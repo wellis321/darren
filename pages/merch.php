@@ -3,18 +3,20 @@ $currentPage = 'merch';
 $pageTitle = 'Shop';
 $metaDescription = 'Official Darren Connell merchandise. Tour t-shirts, Glasgow humor magnets, banter mugs and more.';
 
+$catLabels = ['tour_apparel' => 'Tour Apparel', 'banter_mugs' => 'Banter Mugs', 'glasgow_humor' => 'Glasgow Humor'];
+$activeCategory = trim($_GET['category'] ?? '');
+if ($activeCategory && !isset($catLabels[$activeCategory])) {
+    $activeCategory = '';
+}
+
 $stmt = $pdo->query("SELECT * FROM products ORDER BY is_featured DESC, sort_order ASC, created_at DESC");
-$products = $stmt->fetchAll();
+$allProducts = $stmt->fetchAll();
+
+$products = $activeCategory
+    ? array_filter($allProducts, fn($p) => ($p['category'] ?? '') === $activeCategory)
+    : $allProducts;
 
 $featured = array_filter($products, fn($p) => !empty($p['is_featured']));
-$byCategory = [
-    'tour_apparel' => array_filter($products, fn($p) => ($p['category'] ?? '') === 'tour_apparel'),
-    'banter_mugs' => array_filter($products, fn($p) => ($p['category'] ?? '') === 'banter_mugs'),
-    'glasgow_humor' => array_filter($products, fn($p) => ($p['category'] ?? '') === 'glasgow_humor'),
-];
-$other = array_filter($products, fn($p) => !in_array($p['category'] ?? 'general', ['tour_apparel', 'banter_mugs', 'glasgow_humor']));
-
-$catLabels = ['tour_apparel' => 'Tour Apparel', 'banter_mugs' => 'Banter Mugs', 'glasgow_humor' => 'Glasgow Humor'];
 ?>
 <!DOCTYPE html>
 <html class="dark" lang="en">
@@ -54,29 +56,32 @@ $catLabels = ['tour_apparel' => 'Tour Apparel', 'banter_mugs' => 'Banter Mugs', 
 <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
 <!-- Category Tabs -->
 <nav class="bg-background-light dark:bg-background-dark border-b border-primary/10">
-<div class="flex px-4 gap-6 overflow-x-auto no-scrollbar">
-<a class="flex flex-col items-center justify-center border-b-2 border-primary text-primary pb-3 pt-4 whitespace-nowrap" href="#all">
+<div class="flex px-4 gap-4 sm:gap-6 overflow-x-auto no-scrollbar scroll-smooth py-1" id="category-tabs">
+<a class="flex flex-col items-center justify-center border-b-2 pb-3 pt-4 whitespace-nowrap transition-colors shrink-0 <?= !$activeCategory ? 'border-primary text-primary' : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-primary' ?>" href="/merch.php" data-tab="all">
 <span class="text-sm font-bold">All Items</span>
 </a>
 <?php foreach ($catLabels as $cat => $label): ?>
-<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 dark:text-slate-400 pb-3 pt-4 whitespace-nowrap hover:text-primary transition-colors" href="#<?= e($cat) ?>">
+<a class="flex flex-col items-center justify-center border-b-2 pb-3 pt-4 whitespace-nowrap transition-colors shrink-0 <?= $activeCategory === $cat ? 'border-primary text-primary' : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-primary' ?>" href="/merch.php?category=<?= e($cat) ?>" data-tab="<?= e($cat) ?>">
 <span class="text-sm font-bold"><?= e($label) ?></span>
 </a>
 <?php endforeach; ?>
 </div>
 </nav>
-<main id="main-content" class="flex-1">
+<script>
+(function(){var t=document.querySelector('#category-tabs a.border-primary');if(t)t.scrollIntoView({inline:'nearest',block:'nearest',behavior:'instant'});})();
+</script>
+<main id="main-content" class="flex-1 min-w-0 overflow-x-hidden">
 <?php if (!empty($featured)): ?>
 <section class="p-4">
 <h1 class="text-slate-900 dark:text-slate-100 text-2xl font-bold leading-tight mb-4">Featured</h1>
 <?php foreach ($featured as $p): ?>
 <?php $imgFb = 'https://images.unsplash.com/photo-1666731843459-4005513dac66?w=800&q=80'; $imgFbLocal = BASE_PATH . '/assets/images/product-placeholder.svg'; $img = $p['image_url'] ?: $imgFb; ?>
 <div class="@container mb-8">
-<div class="flex flex-col items-stretch justify-start rounded-xl @xl:flex-row @xl:items-start overflow-hidden border border-primary/10 bg-primary/5">
+<div class="flex min-w-0 flex-col items-stretch justify-start rounded-xl @xl:flex-row @xl:items-start overflow-hidden border border-primary/10 bg-primary/5">
 <div class="w-full bg-center bg-no-repeat aspect-square @xl:aspect-video bg-cover">
 <a href="/merch/<?= e($p['slug']) ?>"><img src="<?= e($img) ?>" alt="<?= e($p['title']) ?>" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='<?= e($imgFbLocal) ?>'"/></a>
 </div>
-<div class="flex w-full min-w-72 grow flex-col items-stretch justify-center gap-2 p-6">
+<div class="flex w-full min-w-0 flex-1 flex-col items-stretch justify-center gap-2 p-4 sm:p-6">
 <div class="flex justify-between items-start">
 <div>
 <span class="inline-block px-2 py-1 rounded bg-primary/20 text-primary text-[10px] font-bold uppercase tracking-wider mb-2">Best Seller</span>
@@ -113,7 +118,7 @@ $catLabels = ['tour_apparel' => 'Tour Apparel', 'banter_mugs' => 'Banter Mugs', 
 <?php foreach ($products as $p): ?>
 <?php if (!empty($p['is_featured'])) continue; ?>
 <?php $imgFb = 'https://images.unsplash.com/photo-1666731843459-4005513dac66?w=800&q=80'; $imgFbLocal = BASE_PATH . '/assets/images/product-placeholder.svg'; $img = $p['image_url'] ?: $imgFb; ?>
-<div class="flex flex-col gap-3 group">
+<div class="flex min-w-0 flex-col gap-3 group">
 <a href="/merch/<?= e($p['slug']) ?>" class="aspect-square w-full overflow-hidden rounded-xl bg-primary/5 relative block">
 <img src="<?= e($img) ?>" alt="<?= e($p['title']) ?>" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.onerror=null;this.src='<?= e($imgFbLocal) ?>'"/>
 </a>
