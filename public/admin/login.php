@@ -56,7 +56,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <button type="submit" class="btn btn-primary">Log In</button>
             <p class="login-hint" style="margin-top:0.75rem;"><a href="forgot-password.php">Forgot password?</a></p>
         </form>
-        <?php if (env('APP_ENV') !== 'production'): ?><p class="login-hint">Dev hint: admin@darrenconnell.com / changeme123</p><?php endif; ?>
     </div>
 </body>
 </html>
