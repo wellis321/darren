@@ -95,8 +95,16 @@ $timeStr = $event['event_time'] ? (new DateTime($event['event_time']))->format('
 $city = trim($event['venue_city'] ?? '');
 $country = in_array($city, ['Glasgow','Edinburgh','Aberdeen','Dundee','Inverness']) ? 'Scotland' : ($city === 'London' ? 'UK' : ($city ? 'UK' : ''));
 $locationStr = $city ? e($city) . ($country ? ', ' . $country : '') : '';
+$cardHref = null;
+if (!$soldOut) {
+    $cardHref = $event['ticket_url'] ? e($event['ticket_url']) : '/bookings.php';
+}
 ?>
+<?php if ($cardHref): ?>
+<a href="<?= $cardHref ?>" target="<?= $event['ticket_url'] ? '_blank' : '_self' ?>" rel="<?= $event['ticket_url'] ? 'noopener' : '' ?>" class="group flex flex-col sm:flex-row gap-4 bg-white dark:bg-background-dark border <?= $soldOut ? 'border-slate-200 dark:border-slate-800' : 'border-primary/5 dark:border-primary/10' ?> p-4 rounded-xl items-center justify-between hover:border-primary/40 transition-all duration-300 mt-2 <?= $soldOut ? 'opacity-80' : '' ?>">
+<?php else: ?>
 <div class="flex flex-col sm:flex-row gap-4 bg-white dark:bg-background-dark border <?= $soldOut ? 'border-slate-200 dark:border-slate-800' : 'border-primary/5 dark:border-primary/10' ?> p-4 rounded-xl items-center justify-between hover:border-primary/40 transition-all duration-300 mt-2 <?= $soldOut ? 'opacity-80' : '' ?>">
+<?php endif; ?>
 <div class="flex items-start gap-4 w-full">
 <div class="flex flex-col items-center justify-center rounded-lg <?= $soldOut ? 'bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-slate-700' : 'bg-primary/10 dark:bg-primary/20 border-primary/20' ?> shrink-0 size-14 border">
 <span class="<?= $soldOut ? 'text-slate-500' : 'text-primary' ?> font-bold text-lg leading-none"><?= format_date($event['event_date'], 'j') ?></span>
@@ -120,12 +128,16 @@ $locationStr = $city ? e($city) . ($country ? ', ' . $country : '') : '';
 <?php if ($soldOut): ?>
 <button class="w-full sm:min-w-[120px] cursor-not-allowed items-center justify-center rounded-lg h-10 px-4 bg-slate-200 dark:bg-slate-800 text-slate-500 text-sm font-bold" disabled>Sold Out</button>
 <?php elseif ($event['ticket_url']): ?>
-<a href="<?= e($event['ticket_url']) ?>" class="inline-flex w-full sm:min-w-[120px] items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold transition-transform hover:scale-105 active:scale-95 shadow-lg shadow-primary/20" target="_blank" rel="noopener">Book Now</a>
+<span class="inline-flex w-full sm:min-w-[120px] items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold transition-transform group-hover:scale-105 group-active:scale-95 shadow-lg shadow-primary/20">Book Now</span>
 <?php else: ?>
-<a href="/bookings.php" class="inline-flex w-full sm:min-w-[120px] items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold transition-transform hover:scale-105 active:scale-95 shadow-lg shadow-primary/20">Book Now</a>
+<span class="inline-flex w-full sm:min-w-[120px] items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold transition-transform group-hover:scale-105 group-active:scale-95 shadow-lg shadow-primary/20">Book Now</span>
 <?php endif; ?>
 </div>
+<?php if ($cardHref): ?>
+</a>
+<?php else: ?>
 </div>
+<?php endif; ?>
 <?php endforeach; ?>
 <?php else: ?>
 <div class="mt-2 p-8 rounded-xl bg-white/5 dark:bg-white/5 border border-primary/10 text-center">

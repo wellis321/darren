@@ -238,9 +238,10 @@ $trackCount = count($trackSlides);
 <div class="grid gap-6">
 <?php if (!empty($listEvents)): ?>
 <?php foreach ($listEvents as $event): ?>
-<div class="bg-white/5 p-6 rounded-xl border border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 hover:border-primary/50 transition-colors group">
+<?php $cardHref = $event['ticket_url'] ? e($event['ticket_url']) : '/bookings.php'; ?>
+<a href="<?= $cardHref ?>" target="<?= $event['ticket_url'] ? '_blank' : '_self' ?>" rel="<?= $event['ticket_url'] ? 'noopener' : '' ?>" class="group flex flex-col md:flex-row justify-between items-center gap-6 p-6 rounded-xl border border-white/10 bg-white/5 hover:border-primary/50 transition-colors">
 <div class="flex items-center gap-6 w-full md:w-auto">
-<div class="bg-primary/20 text-primary p-4 rounded-lg text-center min-w-[80px]">
+<div class="bg-primary/20 text-primary p-4 rounded-lg text-center min-w-[80px] shrink-0">
 <span class="block text-2xl font-bold"><?= strtoupper(format_date($event['event_date'], 'M')) ?></span>
 <span class="block text-sm font-black"><?= format_date($event['event_date'], 'j') ?></span>
 </div>
@@ -249,12 +250,8 @@ $trackCount = count($trackSlides);
 <p class="text-slate-400"><?= e($event['venue']) ?><?= $event['venue_city'] ? ' • ' . e($event['venue_city']) : '' ?></p>
 </div>
 </div>
-<?php if ($event['ticket_url']): ?>
-<a href="<?= e($event['ticket_url']) ?>" class="w-full md:w-auto px-8 py-3 bg-white/10 hover:bg-primary text-white font-bold rounded-lg transition-all text-center" target="_blank" rel="noopener">RESERVE A SEAT</a>
-<?php else: ?>
-<a href="/bookings.php" class="w-full md:w-auto px-8 py-3 bg-white/10 hover:bg-primary text-white font-bold rounded-lg transition-all text-center">RESERVE A SEAT</a>
-<?php endif; ?>
-</div>
+<span class="w-full md:w-auto px-8 py-3 bg-white/10 group-hover:bg-primary text-white font-bold rounded-lg transition-all text-center">RESERVE A SEAT</span>
+</a>
 <?php endforeach; ?>
 <?php elseif (empty($events)): ?>
 <div class="bg-white/5 p-6 rounded-xl border border-white/10 text-center py-12">
