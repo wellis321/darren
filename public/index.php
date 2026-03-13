@@ -41,12 +41,6 @@ if ($reqPath === '/ai.txt') {
     include __DIR__ . '/ai.txt.php';
     exit;
 }
-// Redirect /public and /public/ to / (server root is already public)
-if (preg_match('#^/public/?$#', parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH))) {
-    header('Location: /', true, 301);
-    exit;
-}
-
 require_once $baseDir . '/config/session.php';
 require_once $baseDir . '/config/database.php';
 require_once $baseDir . '/includes/functions.php';
