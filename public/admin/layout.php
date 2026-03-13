@@ -26,6 +26,7 @@ $cssV = file_exists($cssFile) ? filemtime($cssFile) : time();
             <a href="content.php">Content</a>
             <a href="media.php">Media</a>
             <a href="podcast.php">Podcasts</a>
+            <a href="merch.php">Merch</a>
             <a href="testimonials.php">Testimonials</a>
             <a href="change-password.php">Change Password</a>
         </nav>

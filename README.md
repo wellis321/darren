@@ -54,6 +54,7 @@ Then open [http://localhost:8001](http://localhost:8001).
 - **Content** — Edit About page and other content blocks
 - **Media** — Add videos (YouTube embeds) and images
 - **Podcasts** — Add episodes for The Darren Connell Show, Straight White Whale, etc.
+- **Merch** — Add, edit, delete shop products (run `sql/add-products.sql` first)
 - **Testimonials** — Manage quotes (e.g. Kevin Bridges testimonial)
 
 ## Site Structure

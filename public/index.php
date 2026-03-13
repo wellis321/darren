@@ -53,6 +53,15 @@ $path = $scriptName !== '/' ? str_replace($scriptName, '', $path) : $path;
 $path = '/' . trim($path, '/');
 if ($path === '/') $path = '/index';
 
+// Product view: /merch/{slug}
+if (preg_match('#^/merch/([a-z0-9\-]+)$#', $path, $m)) {
+    $productSlug = $m[1];
+    ob_start();
+    include $baseDir . '/pages/product.php';
+    echo ob_get_clean();
+    exit;
+}
+
 // Route to appropriate handler
 $routes = [
     '/' => 'index',

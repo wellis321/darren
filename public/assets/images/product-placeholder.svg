@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <rect fill="#eae8e6" width="400" height="400"/>
+  <!-- Mug: body + handle -->
+  <g fill="#b0aeac">
+    <rect x="95" y="85" width="145" height="210" rx="10"/>
+  </g>
+  <path d="M240 110 Q305 110 305 200 Q305 290 240 290" 
+        fill="none" stroke="#b0aeac" stroke-width="28" stroke-linecap="round"/>
+</svg>

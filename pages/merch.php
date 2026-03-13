@@ -2,6 +2,19 @@
 $currentPage = 'merch';
 $pageTitle = 'Shop';
 $metaDescription = 'Official Darren Connell merchandise. Tour t-shirts, Glasgow humor magnets, banter mugs and more.';
+
+$stmt = $pdo->query("SELECT * FROM products ORDER BY is_featured DESC, sort_order ASC, created_at DESC");
+$products = $stmt->fetchAll();
+
+$featured = array_filter($products, fn($p) => !empty($p['is_featured']));
+$byCategory = [
+    'tour_apparel' => array_filter($products, fn($p) => ($p['category'] ?? '') === 'tour_apparel'),
+    'banter_mugs' => array_filter($products, fn($p) => ($p['category'] ?? '') === 'banter_mugs'),
+    'glasgow_humor' => array_filter($products, fn($p) => ($p['category'] ?? '') === 'glasgow_humor'),
+];
+$other = array_filter($products, fn($p) => !in_array($p['category'] ?? 'general', ['tour_apparel', 'banter_mugs', 'glasgow_humor']));
+
+$catLabels = ['tour_apparel' => 'Tour Apparel', 'banter_mugs' => 'Banter Mugs', 'glasgow_humor' => 'Glasgow Humor'];
 ?>
 <!DOCTYPE html>
 <html class="dark" lang="en">
@@ -42,107 +55,77 @@ $metaDescription = 'Official Darren Connell merchandise. Tour t-shirts, Glasgow 
 <!-- Category Tabs -->
 <nav class="bg-background-light dark:bg-background-dark border-b border-primary/10">
 <div class="flex px-4 gap-6 overflow-x-auto no-scrollbar">
-<a class="flex flex-col items-center justify-center border-b-2 border-primary text-primary pb-3 pt-4 whitespace-nowrap" href="#">
+<a class="flex flex-col items-center justify-center border-b-2 border-primary text-primary pb-3 pt-4 whitespace-nowrap" href="#all">
 <span class="text-sm font-bold">All Items</span>
 </a>
-<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 dark:text-slate-400 pb-3 pt-4 whitespace-nowrap hover:text-primary transition-colors" href="#">
-<span class="text-sm font-bold">Tour Apparel</span>
+<?php foreach ($catLabels as $cat => $label): ?>
+<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 dark:text-slate-400 pb-3 pt-4 whitespace-nowrap hover:text-primary transition-colors" href="#<?= e($cat) ?>">
+<span class="text-sm font-bold"><?= e($label) ?></span>
 </a>
-<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 dark:text-slate-400 pb-3 pt-4 whitespace-nowrap hover:text-primary transition-colors" href="#">
-<span class="text-sm font-bold">Banter Mugs</span>
-</a>
-<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 dark:text-slate-400 pb-3 pt-4 whitespace-nowrap hover:text-primary transition-colors" href="#">
-<span class="text-sm font-bold">Glasgow Humor</span>
-</a>
+<?php endforeach; ?>
 </div>
 </nav>
 <main id="main-content" class="flex-1">
-<!-- Featured Tour Merch -->
+<?php if (!empty($featured)): ?>
 <section class="p-4">
-<h1 class="text-slate-900 dark:text-slate-100 text-2xl font-bold leading-tight mb-4">Tour Merchandise</h1>
-<div class="@container">
+<h1 class="text-slate-900 dark:text-slate-100 text-2xl font-bold leading-tight mb-4">Featured</h1>
+<?php foreach ($featured as $p): ?>
+<?php $imgFb = 'https://images.unsplash.com/photo-1666731843459-4005513dac66?w=800&q=80'; $imgFbLocal = BASE_PATH . '/assets/images/product-placeholder.svg'; $img = $p['image_url'] ?: $imgFb; ?>
+<div class="@container mb-8">
 <div class="flex flex-col items-stretch justify-start rounded-xl @xl:flex-row @xl:items-start overflow-hidden border border-primary/10 bg-primary/5">
-<div class="w-full bg-center bg-no-repeat aspect-square @xl:aspect-video bg-cover" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAf9wbGAXxz4De4SK03As0NAInpUEBDrE_hNIEDEt_Zkptx9skUU4HK7KWKMBHzAZ1nKhmak164465u7jnrXgO01PAYT12uSnFnQQ-bf8-q1Xz3krJZBZkpE4R9J-vJJtu7wxljkTatTbmfTCMMrwsTeoOCDXLoAFTG__wmfeDs5r1342EABpQWH9H8YLuwR_kreqBn31tdjoPfmjVk7Gy4Zbc820mzLdzofz_IW7RnLN54CaWUJXFmHKUWeNzP0Wt1-5K_gzmOnyw");'></div>
+<div class="w-full bg-center bg-no-repeat aspect-square @xl:aspect-video bg-cover">
+<a href="/merch/<?= e($p['slug']) ?>"><img src="<?= e($img) ?>" alt="<?= e($p['title']) ?>" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='<?= e($imgFbLocal) ?>'"/></a>
+</div>
 <div class="flex w-full min-w-72 grow flex-col items-stretch justify-center gap-2 p-6">
 <div class="flex justify-between items-start">
 <div>
 <span class="inline-block px-2 py-1 rounded bg-primary/20 text-primary text-[10px] font-bold uppercase tracking-wider mb-2">Best Seller</span>
-<h3 class="text-slate-900 dark:text-slate-100 text-2xl font-bold leading-tight">'Banter' 2024 Tour Tee</h3>
+<h3 class="text-slate-900 dark:text-slate-100 text-2xl font-bold leading-tight"><a href="/merch/<?= e($p['slug']) ?>" class="hover:text-primary transition-colors"><?= e($p['title']) ?></a></h3>
 </div>
-<p class="text-primary text-xl font-bold">£25.00</p>
+<?php if ($p['price']): ?><p class="text-primary text-xl font-bold">£<?= number_format((float)$p['price'], 2) ?></p><?php endif; ?>
 </div>
-<p class="text-slate-600 dark:text-slate-400 text-base font-normal leading-relaxed">
-    Heavyweight 100% organic cotton tee featuring the iconic 2024 Glasgow 'Banter' tour dates on the back. Limited edition run.
-</p>
+<?php if ($p['description']): ?>
+<p class="text-slate-600 dark:text-slate-400 text-base font-normal leading-relaxed line-clamp-2"><?= e($p['description']) ?></p>
+<?php endif; ?>
+<?php if ($p['sizes']): ?>
 <div class="mt-4 flex flex-wrap gap-2">
-<span class="px-3 py-1 border border-primary/20 rounded-lg text-xs font-medium">S</span>
-<span class="px-3 py-1 border border-primary/20 rounded-lg text-xs font-medium bg-primary/10">M</span>
-<span class="px-3 py-1 border border-primary/20 rounded-lg text-xs font-medium">L</span>
-<span class="px-3 py-1 border border-primary/20 rounded-lg text-xs font-medium">XL</span>
+<?php foreach (array_map('trim', explode(',', $p['sizes'])) as $s): ?>
+<span class="px-3 py-1 border border-primary/20 rounded-lg text-xs font-medium"><?= e($s) ?></span>
+<?php endforeach; ?>
 </div>
-<button class="mt-4 flex w-full cursor-pointer items-center justify-center rounded-lg h-12 px-6 bg-primary text-white text-base font-bold shadow-lg shadow-primary/20 hover:brightness-110 active:scale-95 transition-all">
-<span class="material-symbols-outlined mr-2">shopping_bag</span>
-    Add to Cart
-</button>
-</div>
+<?php endif; ?>
+<a href="/merch/<?= e($p['slug']) ?>" class="mt-4 flex w-full cursor-pointer items-center justify-center rounded-lg h-12 px-6 bg-primary text-white text-base font-bold shadow-lg shadow-primary/20 hover:brightness-110 active:scale-95 transition-all">
+<span class="material-symbols-outlined mr-2">shopping_bag</span> View Product
+</a>
 </div>
 </div>
+</div>
+<?php endforeach; ?>
 </section>
+<?php endif; ?>
+
 <!-- Product Grid -->
 <section class="p-4 pb-24">
+<?php if (empty($products)): ?>
+<p class="text-slate-500 dark:text-slate-400">No products yet. Check back soon!</p>
+<?php else: ?>
 <div class="grid grid-cols-2 gap-4">
+<?php foreach ($products as $p): ?>
+<?php if (!empty($p['is_featured'])) continue; ?>
+<?php $imgFb = 'https://images.unsplash.com/photo-1666731843459-4005513dac66?w=800&q=80'; $imgFbLocal = BASE_PATH . '/assets/images/product-placeholder.svg'; $img = $p['image_url'] ?: $imgFb; ?>
 <div class="flex flex-col gap-3 group">
-<div class="aspect-square w-full overflow-hidden rounded-xl bg-primary/5 relative">
-<div class="h-full w-full bg-center bg-cover transition-transform duration-500 group-hover:scale-105" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDTxmQTxcV3WzpENHs-GH-lO9PDcfeW7Z1gcEf_jElrziMJbziucunGV4EZSN63rHNVwLJ37oC2bFdLoSNSY7k_NukIJr1ieOW9SW0p_CORniymBYy20WjpPG5GZECYxhUffshf-Nua-rKyQS_sgrGCZ6UuEd4w-dcI63Soo49bWYYdmPM3GF-oc1LGKSR0lmn4wXxptMQI6OFGswwhGCwSp_e2hNu5GKGp3BAKTA2pxOTvx_QyM3U0KHkgsXriuQN4ThFQcAZJ8Kw");'></div>
-<button class="absolute bottom-2 right-2 size-10 rounded-full bg-white dark:bg-slate-800 flex items-center justify-center text-primary shadow-lg">
-<span class="material-symbols-outlined text-xl">add_shopping_cart</span>
-</button>
-</div>
+<a href="/merch/<?= e($p['slug']) ?>" class="aspect-square w-full overflow-hidden rounded-xl bg-primary/5 relative block">
+<img src="<?= e($img) ?>" alt="<?= e($p['title']) ?>" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.onerror=null;this.src='<?= e($imgFbLocal) ?>'"/>
+</a>
 <div>
-<p class="text-slate-900 dark:text-slate-100 font-bold">Banter Mug: 'Pure Dead Brilliant'</p>
-<p class="text-primary font-medium">£12.50</p>
+<p class="text-slate-900 dark:text-slate-100 font-bold"><a href="/merch/<?= e($p['slug']) ?>" class="hover:text-primary transition-colors"><?= e($p['title']) ?></a></p>
+<?php if ($p['description']): ?><p class="text-slate-600 dark:text-slate-400 text-sm line-clamp-2 mt-0.5"><?= e($p['description']) ?></p><?php endif; ?>
+<?php if ($p['price']): ?><p class="text-primary font-medium mt-1">£<?= number_format((float)$p['price'], 2) ?></p><?php endif; ?>
 </div>
 </div>
-<div class="flex flex-col gap-3 group">
-<div class="aspect-square w-full overflow-hidden rounded-xl bg-primary/5 relative">
-<div class="h-full w-full bg-center bg-cover transition-transform duration-500 group-hover:scale-105" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBV2IlOsoESoLInduqYEHqAT10zqux5ekb-GiC06mIynmoToqJLVAWjbtcwHl0v8I9UnZBoRSP9RZVtnYrSFWMqMyzmoqYlntkqPPEzrfXx6OPbEFfyjtlL3jJ6Jsf_IfYWA7X0qBVeMTCJfWigAkZaJKbROjuISDPNiqOV2nnKTc1fnuRQNEYXaF1Keg6DzC0C0-aIy0VYw3VRJE4GIcVDvvGsCpRyaxj0ScgVrSsSgJI_yl-BFpuhuyI_G2bm6yjRrUzpWIT8wQc");'></div>
-<button class="absolute bottom-2 right-2 size-10 rounded-full bg-white dark:bg-slate-800 flex items-center justify-center text-primary shadow-lg">
-<span class="material-symbols-outlined text-xl">add_shopping_cart</span>
-</button>
+<?php endforeach; ?>
 </div>
-<div>
-<p class="text-slate-900 dark:text-slate-100 font-bold">Banter Mug: 'How's it hingin'?'</p>
-<p class="text-primary font-medium">£12.50</p>
-</div>
-</div>
-<div class="col-span-2 pt-4">
-<h2 class="text-slate-900 dark:text-slate-100 text-xl font-bold">Glasgow Humor Magnets</h2>
-</div>
-<div class="flex flex-col gap-3 group">
-<div class="aspect-[4/3] w-full overflow-hidden rounded-xl bg-primary/5 relative">
-<div class="h-full w-full bg-center bg-cover transition-transform duration-500 group-hover:scale-105" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAlZLtx20RIOLLSwNYw4AEoNtS9MRGOuRWf4SDZOR7sURTy8P5CDMB8INyJQFY7NZ4o4xq11_eKkVy8fvHR5ES5L_phccDOweIt66mqLaaoJr5cSuRxJFpjbgHFy7IfrkiXdtQCpeOUR5aDkGdzVOMDeh_KtgkZyzMOg_DoJLdxRF6mN9-Aq_ZEyIXZVrQ8RgbwG8ziRGIdxTzb-IjvmthKQoVyN0oP2jnoorAOOtV3k4ZaYc19BhU-A_ow_5v7AehUkSic-pXE124");'></div>
-<button class="absolute bottom-2 right-2 size-10 rounded-full bg-white dark:bg-slate-800 flex items-center justify-center text-primary shadow-lg">
-<span class="material-symbols-outlined text-xl">add_shopping_cart</span>
-</button>
-</div>
-<div>
-<p class="text-slate-900 dark:text-slate-100 font-bold">Magnet: 'People Make Glasgow'</p>
-<p class="text-primary font-medium">£5.00</p>
-</div>
-</div>
-<div class="flex flex-col gap-3 group">
-<div class="aspect-[4/3] w-full overflow-hidden rounded-xl bg-primary/5 relative">
-<div class="h-full w-full bg-center bg-cover transition-transform duration-500 group-hover:scale-105" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAIAE8vL_7gXg_sDfZfRF0JsARYDzBV47vNghpZ9_qNLF5tqfdqJfeV_-yhTQ57hetDTjs9vmv-8abxKWkzPv5Obq2vUaq-lE-m3hyvk4EkbzQadzI23uuJ8Hyc6eS9ABXIil8DI2N6izGEnczcJrIoff-TCeMkF22BAn3bsHaHiPFg8Tc1lNzSV-2ZnxzRPjv3eszLdQbLQXHtePq31_qtO5DgE3VpuAyjRosyD7lgR7kP-i-C0Ce28j8xrk4VVd3UmgdiusADvcw");'></div>
-<button class="absolute bottom-2 right-2 size-10 rounded-full bg-white dark:bg-slate-800 flex items-center justify-center text-primary shadow-lg">
-<span class="material-symbols-outlined text-xl">add_shopping_cart</span>
-</button>
-</div>
-<div>
-<p class="text-slate-900 dark:text-slate-100 font-bold">Magnet: 'Did Ye Aye?'</p>
-<p class="text-primary font-medium">£5.00</p>
-</div>
-</div>
-</div>
+<?php endif; ?>
 </section>
 </main>
 <!-- Bottom Navigation Bar -->
