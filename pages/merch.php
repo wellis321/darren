@@ -76,12 +76,12 @@ $featured = array_filter($products, fn($p) => !empty($p['is_featured']));
 <h1 class="text-slate-900 dark:text-slate-100 text-2xl font-bold leading-tight mb-4">Featured</h1>
 <?php foreach ($featured as $p): ?>
 <?php $imgFb = 'https://images.unsplash.com/photo-1666731843459-4005513dac66?w=800&q=80'; $imgFbLocal = BASE_PATH . '/assets/images/product-placeholder.svg'; $img = $p['image_url'] ?: $imgFb; ?>
-<div class="@container mb-8">
-<div class="flex min-w-0 flex-col items-stretch justify-start rounded-xl @xl:flex-row @xl:items-start overflow-hidden border border-primary/10 bg-primary/5">
-<div class="w-full bg-center bg-no-repeat aspect-square @xl:aspect-video bg-cover">
-<a href="/merch/<?= e($p['slug']) ?>"><img src="<?= e($img) ?>" alt="<?= e($p['title']) ?>" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='<?= e($imgFbLocal) ?>'"/></a>
-</div>
-<div class="flex w-full min-w-0 flex-1 flex-col items-stretch justify-center gap-2 p-4 sm:p-6">
+<div class="mb-8">
+<div class="flex flex-col overflow-hidden rounded-xl border border-primary/10 bg-primary/5">
+<a href="/merch/<?= e($p['slug']) ?>" class="block aspect-[4/3] w-full overflow-hidden bg-center bg-cover">
+<img src="<?= e($img) ?>" alt="<?= e($p['title']) ?>" class="h-full w-full object-cover" onerror="this.onerror=null;this.src='<?= e($imgFbLocal) ?>'"/>
+</a>
+<div class="flex flex-col gap-2 p-4">
 <div class="flex justify-between items-start">
 <div>
 <span class="inline-block px-2 py-1 rounded bg-primary/20 text-primary text-[10px] font-bold uppercase tracking-wider mb-2">Best Seller</span>
