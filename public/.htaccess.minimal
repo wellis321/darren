@@ -1,0 +1,3 @@
+# Rename to .htaccess if the main .htaccess causes 403
+# This minimal version only sets the directory index
+DirectoryIndex index.php

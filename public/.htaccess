@@ -1,11 +1,10 @@
+# If you get 403, rename to .htaccess.bak to test if this file is the cause
 DirectoryIndex index.php
+
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteBase /
-    # If the requested file/dir exists, serve it
-    RewriteCond %{REQUEST_FILENAME} -f [OR]
-    RewriteCond %{REQUEST_FILENAME} -d
-    RewriteRule ^ - [L]
-    # Otherwise route to index.php
-    RewriteRule ^ index.php [L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule . index.php [L]
 </IfModule>

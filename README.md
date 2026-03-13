@@ -94,15 +94,19 @@ To regenerate designs from Stitch, use the Stitch MCP tools and the stitch-loop 
 
 ## Hostinger Deployment (fixing 403)
 
-1. **Document root must point to the `public` folder.** In hPanel → Domains → your domain → Document Root, set it to `public_html/your-project/public` (or wherever your `public` folder lives). The web server must serve from `public/`, not the project root.
+**If you're in Hostinger's default/public folder and still get 403:**
 
-2. **Folder structure** — Upload the full project. The `public` folder should contain: `index.php`, `admin/`, `api/`, `assets/`, `.htaccess`, `robots.txt`, `sitemap.xml.php`, etc.
+1. **Disable .htaccess** — In File Manager, rename `public/.htaccess` to `.htaccess.bak`. Reload the site. If it works, the rewrite rules are conflicting. Use `public/.htaccess.minimal` instead (rename it to `.htaccess`).
 
-3. **Permissions** — Set 755 for directories, 644 for files (via File Manager).
+2. **Check parent .htaccess** — If your files are in `default/public/`, look for an `.htaccess` in the parent `default/` folder. Hostinger sometimes adds one with `Deny` rules—rename it to test.
 
-4. **`.htaccess`** — The `public/.htaccess` sets `DirectoryIndex index.php` and routes clean URLs. If you still get 403, temporarily rename `.htaccess` to test; some Hostinger configs may conflict.
+3. **File structure** — The document root (e.g. `default/public`) must contain: `index.php` at the top level, plus `admin/`, `api/`, `assets/`. The parent folder must have `config/`, `includes/`, `pages/`.
 
-5. **`.env`** — Create `.env` in the project root (parent of `public`) with `APP_ENV=production`, `APP_URL=https://your-domain.com`, and your DB credentials.
+4. **Permissions** — 755 for directories, 644 for files. Avoid 777.
+
+5. **Direct test** — Try `https://yoursite.com/index.php` — if that loads but `/` does not, the issue is DirectoryIndex.
+
+6. **`.env`** — In the project root (parent of `public`), add `.env` with `APP_ENV=production`, `APP_URL`, and DB credentials.
 
 ## Tech Stack
 
