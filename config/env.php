@@ -2,7 +2,12 @@
 /**
  * Load environment variables from .env file
  */
-defined('BASE_PATH') or define('BASE_PATH', '');
+if (!defined('BASE_PATH')) {
+    // When doc root is project root, assets/admin live under public/ — detect from script path
+    $docRoot = rtrim($_SERVER['DOCUMENT_ROOT'] ?? '', '/');
+    $scriptDir = dirname($_SERVER['SCRIPT_FILENAME'] ?? '');
+    define('BASE_PATH', ($docRoot !== '' && strpos($scriptDir, $docRoot . '/public') === 0) ? '/public' : '');
+}
 $envFile = dirname(__DIR__) . '/.env';
 if (file_exists($envFile)) {
     $lines = file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
