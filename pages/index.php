@@ -108,7 +108,7 @@ $testimonialRotate = count($testimonials) > 3;
 <div class="absolute -top-10 -right-10 w-64 h-64 bg-primary/20 rounded-full blur-3xl"></div>
 <div class="absolute -bottom-10 -left-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
 <div class="relative rounded-2xl overflow-hidden border-4 border-primary/20 shadow-2xl">
-<img alt="Darren Connell" class="w-full aspect-[4/5] object-cover" src="/assets/images/darren.png"/>
+<img alt="Darren Connell" class="w-full aspect-[4/5] object-cover" src="<?= BASE_PATH ?>/assets/images/darren.png"/>
 <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-background-dark to-transparent">
 <p class="text-white font-bold text-lg"><?= $featuredEvent ? e($featuredEvent['venue']) : 'Live at The King\'s Theatre' ?></p>
 <p class="text-primary font-medium text-sm"><?= $featuredEvent ? format_date($featuredEvent['event_date'], 'F jS') . ($featuredEvent['event_time'] ? ', ' . format_time($featuredEvent['event_time']) : '') : 'May 29th, 8PM & 9PM' ?></p>

@@ -33,7 +33,7 @@ $useStitch = true; // Stitch project 3458059587571971262
         body { font-family: 'Space Grotesk', sans-serif; min-height: max(884px, 100dvh); }
         .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; font-family: 'Material Symbols Outlined'; font-weight: normal; font-style: normal; display: inline-block; line-height: 1; }
     </style>
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="<?= BASE_PATH ?>/assets/css/style.css">
 </head>
 <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased">
 <?php require __DIR__ . '/navbar-stitch.php'; ?>
@@ -57,6 +57,6 @@ $useStitch = true; // Stitch project 3458059587571971262
         <a href="/admin/" class="text-primary/70 hover:text-primary mt-2 inline-block text-xs">Admin</a>
     </div>
 </footer>
-<script src="/assets/js/main.js"></script>
+<script src="<?= BASE_PATH ?>/assets/js/main.js"></script>
 </body>
 </html>

@@ -2,6 +2,7 @@
 /**
  * Load environment variables from .env file
  */
+defined('BASE_PATH') or define('BASE_PATH', '');
 $envFile = dirname(__DIR__) . '/.env';
 if (file_exists($envFile)) {
     $lines = file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);

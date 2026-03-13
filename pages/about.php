@@ -56,7 +56,7 @@ $c = function($key) use ($content, $defaults) {
 <?php require __DIR__ . '/../includes/navbar-stitch.php'; ?>
 <main id="main-content" class="flex-grow">
 <div class="px-4 py-6">
-<div class="bg-cover bg-center flex flex-col justify-end overflow-hidden rounded-xl min-h-[450px] relative group" style="background-image: linear-gradient(to top, rgba(34, 22, 16, 0.9) 0%, rgba(34, 22, 16, 0.4) 30%, rgba(34, 22, 16, 0) 100%), url('/assets/images/darrenconnell_wideimage.jpg');">
+<div class="bg-cover bg-center flex flex-col justify-end overflow-hidden rounded-xl min-h-[450px] relative group" style="background-image: linear-gradient(to top, rgba(34, 22, 16, 0.9) 0%, rgba(34, 22, 16, 0.4) 30%, rgba(34, 22, 16, 0) 100%), url('<?= BASE_PATH ?>/assets/images/darrenconnell_wideimage.jpg');">
 <div class="flex flex-col p-6 space-y-2">
 <span class="bg-primary text-white text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full w-fit">Glasgow's Own</span>
 <h1 class="text-white text-4xl md:text-6xl font-bold leading-none tracking-tighter">Darren <br/>Connell</h1>
@@ -114,7 +114,7 @@ $c = function($key) use ($content, $defaults) {
     Listen Now
 </a>
 </div>
-<img alt="Glaswegians Anonymous Podcast" class="w-full md:w-48 aspect-square rounded-xl object-cover" src="/assets/images/glaswegians-logo-dark.jpg"/>
+<img alt="Glaswegians Anonymous Podcast" class="w-full md:w-48 aspect-square rounded-xl object-cover" src="<?= BASE_PATH ?>/assets/images/glaswegians-logo-dark.jpg"/>
 </div>
 </div>
 <?php if ($c('about_personal')): ?>

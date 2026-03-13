@@ -48,7 +48,7 @@ $youtubeUrl = 'https://www.youtube.com/results?search_query=Glaswegians+Anonymou
 <!-- Hero Section -->
 <section class="flex p-6">
 <div class="flex w-full flex-col gap-6 items-center">
-<img alt="Glaswegians Anonymous Podcast - Darren Connell and Gary Faulds. Scan the QR code to subscribe." class="w-full max-w-2xl rounded-xl shadow-2xl shadow-primary/20 border-2 border-primary/20 object-cover aspect-[4/3]" src="/assets/images/Glas-wegians%20anonQR.jpg"/>
+<img alt="Glaswegians Anonymous Podcast - Darren Connell and Gary Faulds. Scan the QR code to subscribe." class="w-full max-w-2xl rounded-xl shadow-2xl shadow-primary/20 border-2 border-primary/20 object-cover aspect-[4/3]" src="<?= BASE_PATH ?>/assets/images/Glas-wegians%20anonQR.jpg"/>
 <div class="flex flex-col items-center gap-2">
 <h1 class="text-3xl font-bold leading-tight tracking-tight text-center text-primary">Glaswegians Anonymous</h1>
 <p class="text-slate-600 dark:text-primary/70 text-lg font-medium text-center">Hosted by Darren Connell &amp; Gary Faulds</p>
@@ -101,7 +101,7 @@ $url = !empty($ep['episode_url']) ? $ep['episode_url'] : $spotifyUrl;
 $title = e($ep['episode_title'] ?? 'Episode ' . $epNum);
 ?>
 <div class="bg-white dark:bg-primary/5 rounded-xl p-4 flex items-center gap-4 border border-slate-200 dark:border-primary/10 hover:border-primary/40 transition-colors">
-<img alt="Glaswegians Anonymous episode" class="size-16 rounded-lg shrink-0 object-cover bg-primary/20" src="/assets/images/glaswegians-icon-white.png"/>
+<img alt="Glaswegians Anonymous episode" class="size-16 rounded-lg shrink-0 object-cover bg-primary/20" src="<?= BASE_PATH ?>/assets/images/glaswegians-icon-white.png"/>
 <div class="flex-1 min-w-0">
 <p class="text-xs font-bold text-primary mb-1">EPISODE <?= (int)$epNum ?><?= $duration ? ' • ' . e($duration) . ' MIN' : '' ?></p>
 <h4 class="font-bold truncate"><?= $title ?></h4>

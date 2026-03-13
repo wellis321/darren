@@ -69,7 +69,7 @@ $tourTag = date('Y') . ' Tour';
 <main id="main-content">
 <!-- Hero Banner -->
 <div class="p-4">
-<div class="relative flex flex-col justify-end overflow-hidden rounded-xl min-h-[240px] group" style="background-image: linear-gradient(0deg, rgba(34, 22, 16, 0.9) 0%, rgba(34, 22, 16, 0.2) 50%, rgba(34, 22, 16, 0) 100%), url('/assets/images/darren__banner.png'); background-size: cover; background-position: center;">
+<div class="relative flex flex-col justify-end overflow-hidden rounded-xl min-h-[240px] group" style="background-image: linear-gradient(0deg, rgba(34, 22, 16, 0.9) 0%, rgba(34, 22, 16, 0.2) 50%, rgba(34, 22, 16, 0) 100%), url('<?= BASE_PATH ?>/assets/images/darren__banner.png'); background-size: cover; background-position: center;">
 <div class="flex flex-col p-6">
 <span class="bg-primary text-white text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded w-fit mb-2"><?= e($tourTag) ?></span>
 <h1 class="text-white text-3xl font-bold leading-tight font-display">Live & Uncut</h1>

@@ -6,7 +6,7 @@
 $baseUrl = rtrim(function_exists('env') ? env('APP_URL', 'http://localhost:8001') : 'http://localhost:8001', '/');
 $canonicalPath = $canonicalPath ?? (parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/');
 $canonicalUrl = $baseUrl . $canonicalPath;
-$metaImage = $metaImage ?? $baseUrl . '/assets/images/darren__banner.png';
+$metaImage = $metaImage ?? $baseUrl . (defined('BASE_PATH') ? BASE_PATH : '') . '/assets/images/darren__banner.png';
 $fullTitle = $fullTitle ?? (($pageTitle ?? 'Darren Connell') . ' | Darren Connell');
 ?>
 <meta name="description" content="<?= e($metaDescription ?? 'Darren Connell - Scottish comedian, actor and BAFTA-nominated star of Scot Squad. Book tickets, watch clips, and stay updated.') ?>">
@@ -32,7 +32,7 @@ $jsonLdGraph = [
         'url' => $baseUrl,
         'jobTitle' => 'Comedian & Actor',
         'description' => 'Scottish comedian, actor and BAFTA-nominated star of Scot Squad. Stand-up comedy, podcasts and live performances across the UK.',
-        'image' => $baseUrl . '/assets/images/darren.png',
+        'image' => $baseUrl . (defined('BASE_PATH') ? BASE_PATH : '') . '/assets/images/darren.png',
         'sameAs' => [
             'https://www.instagram.com/darrenconnellcomedian/',
             'https://www.facebook.com/darren.connell.77/',

@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Admin Login - Darren Connell</title>
-    <?php $cssPath = '/assets/css/style.css'; $cssFile = dirname(__DIR__) . $cssPath; $cssV = file_exists($cssFile) ? filemtime($cssFile) : time(); ?>
+    <?php $cssPath = (defined('BASE_PATH') ? BASE_PATH : '') . '/assets/css/style.css'; $cssFile = dirname(__DIR__) . '/assets/css/style.css'; $cssV = file_exists($cssFile) ? filemtime($cssFile) : time(); ?>
     <link rel="preload" href="<?= e($cssPath) ?>?v=<?= $cssV ?>" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?= e($cssPath) ?>?v=<?= $cssV ?>">

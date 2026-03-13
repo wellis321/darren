@@ -149,10 +149,10 @@ if (empty($videos)) {
 <div class="columns-2 md:columns-3 lg:columns-4 gap-3 space-y-3">
 <?php
 $placeholderPhotos = [
-    ['url' => '/assets/images/darrenconnell_wideimage.jpg', 'alt' => 'Darren Connell'],
-    ['url' => '/assets/images/darren_relaxed.png', 'alt' => 'Darren Connell'],
-    ['url' => '/assets/images/Glas-wegians%20anonQR.jpg', 'alt' => 'Glaswegians Anonymous - Darren Connell and Gary Faulds'],
-    ['url' => '/assets/images/darren.jpg', 'alt' => 'Darren Connell'],
+    ['url' => BASE_PATH . '/assets/images/darrenconnell_wideimage.jpg', 'alt' => 'Darren Connell'],
+    ['url' => BASE_PATH . '/assets/images/darren_relaxed.png', 'alt' => 'Darren Connell'],
+    ['url' => BASE_PATH . '/assets/images/Glas-wegians%20anonQR.jpg', 'alt' => 'Glaswegians Anonymous - Darren Connell and Gary Faulds'],
+    ['url' => BASE_PATH . '/assets/images/darren.jpg', 'alt' => 'Darren Connell'],
 ];
 foreach ($placeholderPhotos as $p):
 ?>

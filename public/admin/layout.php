@@ -1,8 +1,8 @@
 <?php
 header('Cache-Control: no-store, no-cache, must-revalidate');
 header('Pragma: no-cache');
-$cssPath = '/assets/css/style.css';
-$cssFile = dirname(__DIR__) . $cssPath;
+$cssPath = (defined('BASE_PATH') ? BASE_PATH : '') . '/assets/css/style.css';
+$cssFile = dirname(__DIR__) . '/assets/css/style.css';
 $cssV = file_exists($cssFile) ? filemtime($cssFile) : time();
 ?>
 <!DOCTYPE html>
