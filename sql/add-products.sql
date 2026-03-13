@@ -1,4 +1,6 @@
 -- Products/merch table for shop
+-- Run against your DB: mysql -u user -p YOUR_DB_NAME < sql/add-products.sql
+-- Or in phpMyAdmin: select your database first, then run this.
 CREATE TABLE IF NOT EXISTS products (
     id INT AUTO_INCREMENT PRIMARY KEY,
     slug VARCHAR(120) NOT NULL UNIQUE,
@@ -17,11 +19,11 @@ CREATE TABLE IF NOT EXISTS products (
     INDEX idx_featured (is_featured)
 );
 
--- Seed sample products
+-- Seed sample products (distinct Unsplash images per product)
 INSERT INTO products (slug, title, description, price, image_url, category, sizes, is_featured, sort_order) VALUES
-('banter-2024-tour-tee', '''Banter'' 2024 Tour Tee', 'Heavyweight 100% organic cotton tee featuring the iconic 2024 Glasgow ''Banter'' tour dates on the back. Limited edition run.', 25.00, 'https://lh3.googleusercontent.com/aida-public/AB6AXuAf9wbGAXxz4De4SK03As0NAInpUEBDrE_hNIEDEt_Zkptx9skUU4HK7KWKMBHzAZ1nKhmak164465u7jnrXgO01PAYT12uSnFnQQ-bf8-q1Xz3krJZBZkpE4R9J-vJJtu7wxljkTatTbmfTCMMrwsTeoOCDXLoAFTG__wmfeDs5r1342EABpQWH9H8YLuwR_kreqBn31tdjoPfmjVk7Gy4Zbc820mzLdzofz_IW7RnLN54CaWUJXFmHKUWeNzP0Wt1-5K_gzmOnyw', 'tour_apparel', 'S, M, L, XL', 1, 0),
-('banter-mug-pure-dead-brilliant', 'Banter Mug: ''Pure Dead Brilliant''', NULL, 12.50, 'https://lh3.googleusercontent.com/aida-public/AB6AXuDTxmQTxcV3WzpENHs-GH-lO9PDcfeW7Z1gcEf_jElrziMJbziucunGV4EZSN63rHNVwJ37oC2bFdLoSNSY7k_NukIJr1ieOW9SW0p_CORniymBYy20WjpPG5GZECYxhUffshf-Nua-rKyQS_sgrGCZ6UuEd4w-dcI63Soo49bWYYdmPM3GF-oc1LGKSR0lmn4wXxptMQI6OFGswwhGCwSp_e2hNu5GKGp3BAKTA2pxOTvx_QyM3U0KHkgsXriuQN4ThFQcAZJ8Kw', 'banter_mugs', NULL, 0, 1),
-('banter-mug-hows-it-hingin', 'Banter Mug: ''How''s it hingin''?''', NULL, 12.50, 'https://lh3.googleusercontent.com/aida-public/AB6AXuBV2IlOsoESoLInduqYEHqAT10zqux5ekb-GiC06mIynmoToqJLVAWjbtcwHl0v8I9UnZBoRSP9RZVtnYrSFWMqMyzmoqYlntkqPPEzrfXx6OPbEFfyjtlL3jJ6Jsf_IfYWA7X0qBVeMTCJfWigAkZaJKbROjuISDPNiqOV2nnKTc1fnuRQNEYXaF1Keg6DzC0C0-aIy0VYw3VRJE4GIcVDvvGsCpRyaxj0ScgVrSsSgJI_yl-BFpuhuyI_G2bm6yjRrUzpWIT8wQc', 'banter_mugs', NULL, 0, 2),
-('magnet-people-make-glasgow', 'Magnet: ''People Make Glasgow''', NULL, 5.00, 'https://lh3.googleusercontent.com/aida-public/AB6AXuAlZLtx20RIOLLSwNYw4AEoNtS9MRGOuRWf4SDZOR7sURTy8P5CDMB8INyJQFY7NZ4o4xq11_eKkVy8fvHR5ES5L_phccDOweIt66mqLaaoJr5cSuRxJFpjbgHFy7IfrkiXdtQCpeOUR5aDkGdzVOMDeh_KtgkZyzMOg_DoJLdxRF6mN9-Aq_ZEyIXZVrQ8RgbwG8ziRGIdxTzb-IjvmthKQoVyN0oP2jnoorAOOtV3k4ZaYc19BhU-A_ow_5v7AehUkSic-pXE124', 'glasgow_humor', NULL, 0, 3),
-('magnet-did-ye-aye', 'Magnet: ''Did Ye Aye?''', NULL, 5.00, 'https://lh3.googleusercontent.com/aida-public/AB6AXuAIAE8vL_7gXg_sDfZfRF0JsARYDzBV47vNghpZ9_qNLF5tqfdqJfeV_-yhTQ57hetDTjs9vmv-8abxKWkzPv5Obq2vUaq-lE-m3hyvk4EkbzQadzI23uuJ8Hyc6eS9ABXIil8DI2N6izGEnczcJrIoff-TCeMkF22BAn3bsHaHiPFg8Tc1lNzSV-2ZnxzRPjv3eszLdQbLQXHtePq31_qtO5DgE3VpuAyjRosyD7lgR7kP-i-C0Ce28j8xrk4VVd3UmgdiusADvcw', 'glasgow_humor', NULL, 0, 4)
+('banter-2024-tour-tee', '''Banter'' 2024 Tour Tee', 'Heavyweight 100% organic cotton tee featuring the iconic 2024 Glasgow ''Banter'' tour dates on the back. Limited edition run.', 25.00, 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80', 'tour_apparel', 'S, M, L, XL', 1, 0),
+('banter-mug-pure-dead-brilliant', 'Banter Mug: ''Pure Dead Brilliant''', NULL, 12.50, 'https://images.unsplash.com/photo-1666731843459-4005513dac66?w=800&q=80', 'banter_mugs', NULL, 0, 1),
+('banter-mug-hows-it-hingin', 'Banter Mug: ''How''s it hingin''?''', NULL, 12.50, 'https://images.unsplash.com/photo-1571545479842-77b86d3f9fdf?w=800&q=80', 'banter_mugs', NULL, 0, 2),
+('magnet-people-make-glasgow', 'Magnet: ''People Make Glasgow''', NULL, 5.00, 'https://images.unsplash.com/photo-1612565775767-97a9fffef857?w=800&q=80', 'glasgow_humor', NULL, 0, 3),
+('magnet-did-ye-aye', 'Magnet: ''Did Ye Aye?''', NULL, 5.00, 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80', 'glasgow_humor', NULL, 0, 4)
 ON DUPLICATE KEY UPDATE slug=slug;

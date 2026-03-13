@@ -20,10 +20,20 @@ $currentPage = 'merch';
 $pageTitle = $product['title'];
 $metaDescription = $product['description'] ? substr(strip_tags($product['description']), 0, 160) : $product['title'] . ' - Darren Connell Shop';
 
-$imgFallback = 'https://images.unsplash.com/photo-1666731843459-4005513dac66?w=800&q=80';
 $imgFallbackLocal = BASE_PATH . '/assets/images/product-placeholder.svg';
-$imgUrl = $product['image_url'] ?: $imgFallback;
+$imgUrl = $product['image_url'] ?: $imgFallbackLocal;
 $sizes = $product['sizes'] ? array_map('trim', explode(',', $product['sizes'])) : [];
+
+// All products in display order (for prev/next and "more merch")
+$allStmt = $pdo->query("SELECT id, slug, title, price, image_url FROM products ORDER BY is_featured DESC, sort_order ASC, created_at DESC");
+$allProducts = $allStmt->fetchAll();
+$currentIdx = null;
+foreach ($allProducts as $i => $p) {
+    if ($p['slug'] === $slug) { $currentIdx = $i; break; }
+}
+$prevProduct = ($currentIdx !== null && $currentIdx > 0) ? $allProducts[$currentIdx - 1] : null;
+$nextProduct = ($currentIdx !== null && $currentIdx < count($allProducts) - 1) ? $allProducts[$currentIdx + 1] : null;
+$otherProducts = array_slice(array_filter($allProducts, fn($op) => $op['slug'] !== $slug), 0, 3);
 ?>
 <!DOCTYPE html>
 <html class="dark" lang="en">
@@ -97,9 +107,44 @@ $sizes = $product['sizes'] ? array_map('trim', explode(',', $product['sizes'])) 
     </a>
     <?php endif; ?>
     </div>
+    <?php if ($prevProduct || $nextProduct): ?>
+    <nav class="flex items-stretch gap-3 mt-6">
+        <?php if ($prevProduct): ?>
+        <a href="/merch/<?= e($prevProduct['slug']) ?>" class="flex-1 flex flex-col items-start gap-1 p-4 rounded-xl border border-primary/20 bg-primary/5 hover:bg-primary/10 hover:border-primary/30 transition-all group">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-primary/80">Previous</span>
+            <span class="text-sm font-semibold text-slate-900 dark:text-slate-100 truncate w-full text-left group-hover:text-primary transition-colors"><?= e($prevProduct['title']) ?></span>
+        </a>
+        <?php else: ?><span class="flex-1"></span><?php endif; ?>
+        <?php if ($nextProduct): ?>
+        <a href="/merch/<?= e($nextProduct['slug']) ?>" class="flex-1 flex flex-col items-end gap-1 p-4 rounded-xl border border-primary/20 bg-primary/5 hover:bg-primary/10 hover:border-primary/30 transition-all group">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-primary/80">Next</span>
+            <span class="text-sm font-semibold text-slate-900 dark:text-slate-100 truncate w-full text-right group-hover:text-primary transition-colors"><?= e($nextProduct['title']) ?></span>
+        </a>
+        <?php endif; ?>
+    </nav>
+    <?php endif; ?>
+    </div>
 </div>
 </div>
-</div>
+
+<?php if (!empty($otherProducts)): ?>
+<section class="mt-12 pt-12 border-t border-primary/10 px-4 sm:px-6">
+    <h2 class="text-lg font-bold text-slate-900 dark:text-slate-100 mb-4">More merch</h2>
+    <div class="grid grid-cols-3 gap-6 sm:gap-8">
+    <?php foreach ($otherProducts as $op): ?>
+    <?php $opImg = $op['image_url'] ?: $imgFallbackLocal; ?>
+    <a href="/merch/<?= e($op['slug']) ?>" class="flex flex-col gap-2 group">
+        <div class="aspect-square w-full overflow-hidden rounded-xl bg-primary/5">
+            <img src="<?= e($opImg) ?>" alt="<?= e($op['title']) ?>" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" onerror="this.onerror=null;this.src='<?= e($imgFallbackLocal) ?>'"/>
+        </div>
+        <p class="text-slate-900 dark:text-slate-100 font-bold text-sm truncate group-hover:text-primary transition-colors"><?= e($op['title']) ?></p>
+        <?php if ($op['price']): ?><p class="text-primary font-medium text-sm">£<?= number_format((float)$op['price'], 2) ?></p><?php endif; ?>
+    </a>
+    <?php endforeach; ?>
+    </div>
+</section>
+<?php endif; ?>
+
 </div>
 </main>
 <footer class="border-t border-primary/10 py-8 mt-16">
