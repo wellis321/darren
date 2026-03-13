@@ -92,24 +92,16 @@ To regenerate designs from Stitch, use the Stitch MCP tools and the stitch-loop 
 - **Skip link** — "Skip to main content" for keyboard/screen reader users
 - **One H1 per page** — Proper heading hierarchy throughout
 
-## Hostinger Deployment
+## Hostinger Deployment (Git)
 
-Hostinger's document root is `public_html/YOUR-SITE-FOLDER/` (e.g. `public_html/darren/` or `public_html/papayawhip-crow-673013/`).
+Same pattern as simple-cms. Deploy via GitHub; Hostinger pulls the repo.
 
-**Option A: Change document root** — Upload the full project into `public_html/YOUR-SITE-FOLDER/`. In hPanel → Domains → your domain → **Document Root**, set it to `public_html/YOUR-SITE-FOLDER/public`. The site will use the standard layout.
+1. **Connect GitHub** — In hPanel → Git, connect your repo.
+2. **Set document root** — Point it to the `public/` folder (e.g. `public_html/your-site/public` or wherever the clone lands).
+3. **Create `.env`** — Add `.env` in the project root (above `public/`) with production values. Never commit it.
+4. **Run migrations** — Import `sql/schema.sql` and any migrations via phpMyAdmin or SSH.
 
-**Option B: Flat layout (if you can't change document root)** — The document root must contain `index.php` directly. Run:
-
-```bash
-php build-flat-deploy.php
-```
-
-This creates a `deploy/` folder. Upload everything inside `deploy/` to `public_html/YOUR-SITE-FOLDER/`. Create `deploy/.env` with your production settings before uploading.
-
-**Troubleshooting 404:**
-- 404 on index.php → Files aren't in the document root. **Find it first:** upload `public/check.php` to different folders (e.g. `public_html/`, `public_html/your-site/`, `public_html/your-site/public/`) and visit `https://yoursite.com/check.php` or `https://yoursite.com/your-site/check.php`. When you see "OK", that folder is your document root—put index.php there.
-- 403 → Rename `.htaccess` to `.htaccess.bak` to test; use `.htaccess.minimal` if needed.
-- Permissions: 755 for dirs, 644 for files.
+The root `index.php` redirects to `/public/` if the document root is ever set to the project root by mistake.
 
 ## Tech Stack
 
