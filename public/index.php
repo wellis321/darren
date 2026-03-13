@@ -58,7 +58,11 @@ if (preg_match('#^/merch/([a-z0-9\-]+)$#', $path, $m)) {
     $productSlug = $m[1];
     ob_start();
     include $baseDir . '/pages/product.php';
-    echo ob_get_clean();
+    $content = ob_get_clean();
+    ob_start();
+    include $baseDir . '/includes/popup-stitch.php';
+    $content = str_replace('</body>', ob_get_clean() . "\n</body>", $content);
+    echo $content;
     exit;
 }
 
@@ -89,8 +93,12 @@ if ($page) {
     ob_start();
     include $baseDir . "/pages/{$page}.php";
     $content = ob_get_clean();
-    // Index, merch, live, about, podcast, media, and bookings output full Stitch HTML (no layout wrapper)
-    if (in_array($page, ['index', 'merch', 'live', 'about', 'podcast', 'media', 'bookings', 'search'])) {
+    $popupPages = ['index', 'merch', 'live', 'about', 'podcast', 'media', 'bookings', 'search'];
+    if (in_array($page, $popupPages)) {
+        ob_start();
+        include $baseDir . '/includes/popup-stitch.php';
+        $popupHtml = ob_get_clean();
+        $content = str_replace('</body>', $popupHtml . "\n</body>", $content);
         echo $content;
     } else {
         include $baseDir . '/includes/layout-stitch.php';
