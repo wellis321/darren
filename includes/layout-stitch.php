@@ -50,13 +50,7 @@ $useStitch = true; // Stitch project 3458059587571971262
     <?php endif; ?>
     <?= $content ?? '' ?>
 </main>
-<footer class="border-t border-primary/10 py-8 mt-16">
-    <div class="max-w-7xl mx-auto px-4 text-center text-slate-500 dark:text-slate-400 text-sm">
-        <p>&copy; <?= date('Y') ?> Darren Connell. All rights reserved.</p>
-        <p class="mt-2 opacity-80">This site does not handle personal requests for autographs or video messages.</p>
-        <a href="/admin/" class="text-primary/70 hover:text-primary mt-2 inline-block text-xs">Admin</a>
-    </div>
-</footer>
+<?php require __DIR__ . '/footer-stitch.php'; ?>
 <script src="<?= BASE_PATH ?>/assets/js/main.js"></script>
 </body>
 </html>

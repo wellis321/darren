@@ -133,8 +133,9 @@ $featured = array_filter($products, fn($p) => !empty($p['is_featured']));
 <?php endif; ?>
 </section>
 </main>
+<?php require __DIR__ . '/../includes/footer-stitch.php'; ?>
 <!-- Bottom Navigation Bar -->
-<footer class="fixed bottom-0 left-0 right-0 z-50">
+<footer class="md:hidden fixed bottom-0 left-0 right-0 z-50">
 <div class="flex gap-2 border-t border-primary/10 bg-background-light dark:bg-background-dark/95 backdrop-blur-md px-4 pb-6 pt-2">
 <a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500 dark:text-slate-400" href="/">
 <div class="flex h-8 items-center justify-center"><span class="material-symbols-outlined">home</span></div>

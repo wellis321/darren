@@ -177,11 +177,12 @@ $micImageUrl = 'https://lh3.googleusercontent.com/aida-public/AB6AXuDAFQnnBKOQ24
 
 <div class="h-20"></div>
 </main>
+<?php require __DIR__ . '/../includes/footer-stitch.php'; ?>
 </div>
 </div>
 
 <!-- Bottom Navigation -->
-<nav class="fixed bottom-0 left-0 right-0 z-20 border-t border-primary/10 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md px-4 pb-3 pt-2">
+<nav class="md:hidden fixed bottom-0 left-0 right-0 z-20 border-t border-primary/10 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md px-4 pb-3 pt-2">
 <div class="flex gap-2">
 <a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-400 dark:text-slate-500 hover:text-primary transition-colors" href="/">
 <div class="flex h-8 items-center justify-center"><span class="material-symbols-outlined">home</span></div>

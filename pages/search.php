@@ -101,5 +101,6 @@ $metaDescription = $q ? "Search results for " . e($q) : 'Search the site';
 <?php endif; ?>
 <?php endif; ?>
 </main>
+<?php require __DIR__ . '/../includes/footer-stitch.php'; ?>
 </body>
 </html>

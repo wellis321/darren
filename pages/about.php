@@ -131,7 +131,8 @@ $c = function($key) use ($content, $defaults) {
 </section>
 <div class="h-24"></div>
 </main>
-<nav class="fixed bottom-0 left-0 right-0 z-50 flex border-t border-primary/20 bg-background-light dark:bg-background-dark px-4 pb-6 pt-3 shadow-2xl">
+<?php require __DIR__ . '/../includes/footer-stitch.php'; ?>
+<nav class="fixed bottom-0 left-0 right-0 z-50 flex border-t border-primary/20 bg-background-light dark:bg-background-dark px-4 pb-6 pt-3 shadow-2xl md:hidden">
 <a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500 dark:text-slate-400 hover:text-primary transition-colors" href="/">
 <span class="material-symbols-outlined">home</span>
 <p class="text-[10px] font-bold uppercase tracking-wider">Home</p>

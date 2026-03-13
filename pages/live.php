@@ -164,8 +164,9 @@ if (!$soldOut) {
 <?php endif; ?>
 </div>
 </main>
+<?php require __DIR__ . '/../includes/footer-stitch.php'; ?>
 <!-- Bottom Nav -->
-<nav class="fixed bottom-0 left-0 right-0 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-lg border-t border-primary/10 px-4 pb-4 pt-2 flex justify-between items-center z-50">
+<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-lg border-t border-primary/10 px-4 pb-4 pt-2 flex justify-between items-center z-50">
 <a class="flex flex-col items-center gap-1 group flex-1" href="/">
 <span class="material-symbols-outlined text-slate-500 dark:text-slate-400 group-hover:text-primary transition-colors">home</span>
 <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 group-hover:text-primary">Home</span>

@@ -113,8 +113,9 @@ $title = e($ep['episode_title'] ?? 'Episode ' . $epNum);
 <?php endforeach; ?>
 </section>
 </main>
+<?php require __DIR__ . '/../includes/footer-stitch.php'; ?>
 <!-- Bottom Navigation Bar -->
-<nav class="fixed bottom-0 left-0 right-0 flex gap-2 border-t border-slate-200 dark:border-primary/20 bg-background-light dark:bg-background-dark px-4 pb-6 pt-3 z-20">
+<nav class="md:hidden fixed bottom-0 left-0 right-0 flex gap-2 border-t border-slate-200 dark:border-primary/20 bg-background-light dark:bg-background-dark px-4 pb-6 pt-3 z-20">
 <a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500 dark:text-slate-400 hover:text-primary transition-colors" href="/">
 <span class="material-symbols-outlined">home</span>
 <p class="text-[10px] font-bold uppercase tracking-widest leading-none">Home</p>

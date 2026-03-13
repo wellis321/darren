@@ -39,17 +39,6 @@ $currentPage = $currentPage ?? 'legal';
 <?= $legalContent ?>
 </div>
 </main>
-<footer class="border-t border-primary/10 py-8 mt-16">
-    <div class="max-w-7xl mx-auto px-4 text-center text-slate-500 dark:text-slate-400 text-sm">
-        <p>&copy; <?= date('Y') ?> Darren Connell. All rights reserved.</p>
-        <nav class="mt-2 flex items-center justify-center gap-2" aria-label="Legal">
-        <a href="/privacy.php" class="text-slate-400 hover:text-primary transition-colors">Privacy</a>
-        <span class="text-slate-500 dark:text-slate-600">·</span>
-        <a href="/terms.php" class="text-slate-400 hover:text-primary transition-colors">Terms</a>
-        <span class="text-slate-500 dark:text-slate-600">·</span>
-        <a href="/cookie-policy.php" class="text-slate-400 hover:text-primary transition-colors">Cookies</a>
-    </nav>
-    </div>
-</footer>
+<?php require __DIR__ . '/footer-stitch.php'; ?>
 </body>
 </html>
