@@ -90,16 +90,16 @@ $testimonialRotate = count($testimonials) > 3;
 <!-- Hero Section -->
 <section class="relative overflow-hidden pt-12 pb-20 md:pt-24 md:pb-32">
 <div class="max-w-7xl mx-auto px-4">
-<div class="flex flex-col lg:flex-row items-center gap-12">
-<div class="flex-1 text-center lg:text-left z-10">
+<div class="flex flex-col sm:flex-row items-center gap-12">
+<div class="flex-1 text-center sm:text-left z-10">
 <span class="inline-block py-1 px-3 rounded-full bg-primary/20 text-primary text-sm font-bold mb-6 tracking-wider uppercase">Live & On Demand</span>
 <h1 class="text-5xl md:text-7xl font-black leading-none mb-6 tracking-tighter">
     Truthful.<br/>Clever.<br/><span class="text-primary">Very Funny.</span>
 </h1>
-<p class="text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-8 max-w-xl mx-auto lg:mx-0 font-medium">
+<p class="text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-8 max-w-xl mx-auto sm:mx-0 font-medium">
     Experience the raw, high energy comedy of Glasgow's own comedy powerhouse. From Scot Squad to the main stage.
 </p>
-<div class="flex flex-col items-center justify-center lg:items-start gap-3">
+<div class="flex flex-col items-center justify-center sm:items-start gap-3">
 <a href="/live.php" class="w-full sm:w-auto px-8 py-4 bg-primary text-white font-bold rounded-lg shadow-lg shadow-primary/30 hover:scale-105 transition-transform text-center">BOOK YOUR DATES</a>
 <a href="/media.php" class="text-primary font-bold hover:underline">VIEW SPECIALS</a>
 </div>

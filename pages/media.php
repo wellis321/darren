@@ -9,6 +9,12 @@ $allMedia = $stmt->fetchAll();
 $videos = array_filter($allMedia, fn($m) => $m['type'] === 'video');
 $images = array_filter($allMedia, fn($m) => $m['type'] === 'image');
 
+$tabLabels = ['all' => 'All Media', 'clips' => 'Stand-up Clips', 'sketches' => 'Sketches', 'gallery' => 'Gallery', 'threads' => 'Threads'];
+$activeTab = trim($_GET['tab'] ?? 'all');
+if (!isset($tabLabels[$activeTab])) {
+    $activeTab = 'all';
+}
+
 // Extract YouTube ID for thumbnail
 function youtube_thumbnail($url) {
     if (preg_match('/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([a-zA-Z0-9_-]+)/', $url ?? '', $m)) {
@@ -54,33 +60,29 @@ if (empty($videos)) {
     body { font-family: 'Space Grotesk', sans-serif; min-height: max(884px, 100dvh); }
     .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; font-family: 'Material Symbols Outlined'; font-weight: normal; font-style: normal; display: inline-block; line-height: 1; }
     .filled-icon { font-variation-settings: 'FILL' 1; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
 <?php require __DIR__ . '/../includes/navbar-stitch.php'; ?>
 <div class="relative flex min-h-screen flex-col overflow-x-hidden">
 <!-- Category Tabs -->
-<nav class="sticky top-16 z-40 bg-background-light dark:bg-background-dark border-b border-primary/10">
-<div class="flex px-4 gap-8 overflow-x-auto no-scrollbar">
-<a class="flex flex-col items-center justify-center border-b-2 border-primary text-primary pb-3 pt-4 shrink-0" href="#all">
-<span class="text-sm font-bold">All Media</span>
+<nav class="bg-background-light dark:bg-background-dark border-b border-primary/10">
+<div class="flex px-4 gap-4 sm:gap-6 overflow-x-auto no-scrollbar scroll-smooth py-1" id="media-tabs">
+<?php foreach ($tabLabels as $tab => $label): ?>
+<a class="flex flex-col items-center justify-center border-b-2 pb-3 pt-4 whitespace-nowrap transition-colors shrink-0 <?= $activeTab === $tab ? 'border-primary text-primary' : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-primary' ?>" href="/media.php?tab=<?= e($tab) ?>" data-tab="<?= e($tab) ?>">
+<span class="text-sm font-bold"><?= e($label) ?></span>
 </a>
-<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 dark:text-slate-400 pb-3 pt-4 hover:text-primary transition-colors shrink-0" href="#all">
-<span class="text-sm font-bold">Stand-up Clips</span>
-</a>
-<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 dark:text-slate-400 pb-3 pt-4 hover:text-primary transition-colors shrink-0" href="#all">
-<span class="text-sm font-bold">Sketches</span>
-</a>
-<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 dark:text-slate-400 pb-3 pt-4 hover:text-primary transition-colors shrink-0" href="#gallery">
-<span class="text-sm font-bold">Gallery</span>
-</a>
-<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 dark:text-slate-400 pb-3 pt-4 hover:text-primary transition-colors shrink-0" href="#threads">
-<span class="text-sm font-bold">Threads</span>
-</a>
+<?php endforeach; ?>
 </div>
 </nav>
+<script>
+(function(){var t=document.querySelector('#media-tabs a.border-primary');if(t)t.scrollIntoView({inline:'nearest',block:'nearest',behavior:'instant'});})();
+</script>
 <main id="main-content" class="flex-1 pb-24">
 <!-- Video Section -->
+<?php if (in_array($activeTab, ['all', 'clips', 'sketches'])): ?>
 <section id="all" class="p-4">
 <div class="flex items-center justify-between mb-4">
 <h1 class="text-lg font-bold tracking-tight">Stand-up &amp; Sketches</h1>
@@ -127,9 +129,10 @@ if (empty($videos)) {
 </div>
 <?php endif; ?>
 </section>
+<?php endif; ?>
 <!-- Photo Gallery Section -->
-<?php if (!empty($images)): ?>
-<section id="gallery" class="p-4 mt-4">
+<?php if (in_array($activeTab, ['all', 'gallery']) && !empty($images)): ?>
+<section id="gallery" class="p-4 <?= $activeTab === 'gallery' ? '' : 'mt-4' ?>">
 <div class="flex items-center justify-between mb-4">
 <h2 class="text-lg font-bold tracking-tight">Performance Photos</h2>
 </div>
@@ -141,8 +144,8 @@ if (empty($videos)) {
 <?php endforeach; ?>
 </div>
 </section>
-<?php else: ?>
-<section id="gallery" class="p-4 mt-4">
+<?php elseif (in_array($activeTab, ['all', 'gallery'])): ?>
+<section id="gallery" class="p-4 <?= $activeTab === 'gallery' ? '' : 'mt-4' ?>">
 <div class="flex items-center justify-between mb-4">
 <h2 class="text-lg font-bold tracking-tight">Performance Photos</h2>
 </div>
@@ -165,7 +168,8 @@ foreach ($placeholderPhotos as $p):
 <?php endif; ?>
 
 <!-- From Threads Section -->
-<section id="threads" class="p-4 mt-8">
+<?php if (in_array($activeTab, ['all', 'threads'])): ?>
+<section id="threads" class="p-4 <?= in_array($activeTab, ['all']) ? 'mt-8' : '' ?>">
 <div class="flex items-center justify-between mb-4">
 <h2 class="text-lg font-bold tracking-tight">From Threads</h2>
 <a href="https://www.threads.net/@darrenconnellcomedian" target="_blank" rel="noopener" class="text-primary text-sm font-bold hover:underline">Follow @darrenconnellcomedian</a>
@@ -186,6 +190,7 @@ foreach ($placeholderPhotos as $p):
 </article>
 </div>
 </section>
+<?php endif; ?>
 </main>
 <?php require __DIR__ . '/../includes/footer-stitch.php'; ?>
 <!-- Bottom Navigation Bar -->
